@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://btv6wpo7q83ph"]
+
+[ext_resource type="PackedScene" uid="uid://bne1utjq1vjn7" path="res://enemy.tscn" id="1_31k81"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntuh5"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[node name="SkeletonEnemy" instance=ExtResource("1_31k81")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_ntuh5")
+animation = &"walk_up"

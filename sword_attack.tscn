@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://vn1vb4nolhij"]
+
+[ext_resource type="Script" path="res://scripts/sword_attack.gd" id="1_fhs3j"]
+[ext_resource type="Texture2D" uid="uid://cluky8qpl601e" path="res://assets/Snoop's Swords (Pack 6)/Pack 6/1px/06.png" id="2_p1rb1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppvjv"]
+size = Vector2(20, 45.145)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uwhpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p1rb1")
+}],
+"loop": true,
+"name": &"sword_attack",
+"speed": 5.0
+}]
+
+[node name="SwordAttack" type="Area2D" groups=["player_attack"]]
+scale = Vector2(0.5, 0.5)
+collision_mask = 2
+script = ExtResource("1_fhs3j")
+metadata/_edit_group_ = true
+
+[node name="SwordHitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -36.5725)
+shape = SubResource("RectangleShape2D_ppvjv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -36)
+sprite_frames = SubResource("SpriteFrames_uwhpt")
+animation = &"sword_attack"
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
