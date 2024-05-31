@@ -1,7 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwn421e84lwgh"]
+[gd_scene load_steps=22 format=3 uid="uid://dwn421e84lwgh"]
 
 [ext_resource type="Texture2D" uid="uid://bniw6epfrnd46" path="res://assets/32x32-bat-sprite.png" id="1_2k4ia"]
 [ext_resource type="Script" path="res://scripts/bat.gd" id="1_ur7ur"]
+[ext_resource type="PackedScene" uid="uid://dmlnwioja4n65" path="res://movement_component.tscn" id="3_v27l8"]
+[ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://hurtbox_component.tscn" id="4_arvks"]
+[ext_resource type="PackedScene" uid="uid://cdoyhriv36rm3" path="res://health_component.tscn" id="5_jgns8"]
+[ext_resource type="PackedScene" uid="uid://b7ja4o26feoot" path="res://enemy_direction_finder_component.tscn" id="6_olj7w"]
+[ext_resource type="PackedScene" uid="uid://cw5mav0m0jou3" path="res://animator_component.tscn" id="7_hl84f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yarxo"]
 atlas = ExtResource("1_2k4ia")
@@ -114,16 +119,33 @@ animations = [{
 radius = 19.0
 
 [node name="Bat" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_ur7ur")
 metadata/_edit_group_ = true
 
-[node name="BatSprite" type="AnimatedSprite2D" parent="."]
+[node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n84ho")
 animation = &"walk_up"
-frame_progress = 0.062225
+frame_progress = 0.424415
 
-[node name="BatCollider" type="CollisionShape2D" parent="."]
+[node name="EnemyCollisionBox" type="CollisionShape2D" parent="." groups=["enemies"]]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_uctud")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component", "knock_timer") instance=ExtResource("3_v27l8")]
+direction_component = NodePath("../EnemyDirectionFinderComponent")
+knock_timer = NodePath("../KnockbackTimer")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_arvks")]
+health_component = NodePath("../HealthComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_jgns8")]
+
+[node name="EnemyDirectionFinderComponent" parent="." instance=ExtResource("6_olj7w")]
+
+[node name="AnimatorComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("7_hl84f")]
+direction_component = NodePath("../EnemyDirectionFinderComponent")
+
+[node name="KnockbackTimer" type="Timer" parent="."]
+wait_time = 0.2

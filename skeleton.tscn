@@ -290,6 +290,7 @@ polygon = PackedVector2Array(16, 16, 16, 16, 16, 32, -16, 32, -16, -16, -16, -24
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component", "knock_timer") instance=ExtResource("4_fj80e")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
 knock_timer = NodePath("../KnockTimer")
+speed = 80
 
 [node name="EnemyDirectionFinderComponent" parent="." instance=ExtResource("5_sdtjf")]
 
