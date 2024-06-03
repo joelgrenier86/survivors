@@ -1,11 +1,14 @@
 extends CharacterBody2D
 var direction
 var animation_name
+@export var point_value = 2
 var collision_count
 var collisions = []
 var speed
 func _physics_process(_delta):
-	
+	#every update we want the enemy to find the player and move towards it, get the animation name and play the animation
+	#for simplicity and learning purposes we are using only 4 movement direction animations even though theres diagonal movement
+
 	direction = $EnemyDirectionFinderComponent.acquire_target_position()
 	speed = $MovementComponent.get_movement_speed()
 	velocity = speed * direction
@@ -14,7 +17,7 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 func _on_health_component_is_dead():
-	#Events.score_points.connect(update_score)
+	Events.score_points.emit(point_value)
 	queue_free()
 func handle_hit(damage):
 	$HurtboxComponent.handle_hit(damage)

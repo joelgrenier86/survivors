@@ -4,6 +4,7 @@ var animation_name
 var collision_count
 var collisions = []
 var speed
+@export var point_value = 1
 func _physics_process(_delta):
 	
 	direction = $EnemyDirectionFinderComponent.acquire_target_position()
@@ -14,8 +15,9 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 func _on_health_component_is_dead():
-	#Events.score_points.connect(update_score)
+	Events.score_points.emit(point_value)
 	queue_free()
+	
 func handle_hit(damage):
 	$HurtboxComponent.handle_hit(damage)
 
