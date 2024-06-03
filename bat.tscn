@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwn421e84lwgh"]
+[gd_scene load_steps=23 format=3 uid="uid://dwn421e84lwgh"]
 
 [ext_resource type="Texture2D" uid="uid://bniw6epfrnd46" path="res://assets/32x32-bat-sprite.png" id="1_2k4ia"]
 [ext_resource type="Script" path="res://scripts/bat.gd" id="1_ur7ur"]
 [ext_resource type="PackedScene" uid="uid://dmlnwioja4n65" path="res://movement_component.tscn" id="3_v27l8"]
+[ext_resource type="Script" path="res://EnemyCollisionBox.gd" id="3_w4u72"]
 [ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://hurtbox_component.tscn" id="4_arvks"]
 [ext_resource type="PackedScene" uid="uid://cdoyhriv36rm3" path="res://health_component.tscn" id="5_jgns8"]
 [ext_resource type="PackedScene" uid="uid://b7ja4o26feoot" path="res://enemy_direction_finder_component.tscn" id="6_olj7w"]
@@ -118,7 +119,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_uctud"]
 radius = 19.0
 
-[node name="Bat" type="CharacterBody2D"]
+[node name="Bat" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_ur7ur")
@@ -129,15 +130,17 @@ sprite_frames = SubResource("SpriteFrames_n84ho")
 animation = &"walk_up"
 frame_progress = 0.424415
 
-[node name="EnemyCollisionBox" type="CollisionShape2D" parent="." groups=["enemies"]]
+[node name="EnemyCollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_uctud")
+script = ExtResource("3_w4u72")
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component", "knock_timer") instance=ExtResource("3_v27l8")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
-knock_timer = NodePath("../KnockbackTimer")
+knock_timer = NodePath("../KnockTimer")
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_arvks")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("collision_area", "health_component") instance=ExtResource("4_arvks")]
+collision_area = NodePath("../EnemyCollisionBox")
 health_component = NodePath("../HealthComponent")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_jgns8")]
@@ -147,5 +150,11 @@ health_component = NodePath("../HealthComponent")
 [node name="AnimatorComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("7_hl84f")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
 
-[node name="KnockbackTimer" type="Timer" parent="."]
+[node name="KnockTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[connection signal="change_health" from="HurtboxComponent" to="HealthComponent" method="_on_hurtbox_component_change_health"]
+[connection signal="knock_back" from="HurtboxComponent" to="MovementComponent" method="_on_hurtbox_component_knock_back"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="is_dead" from="HealthComponent" to="." method="_on_health_component_is_dead"]
+[connection signal="timeout" from="KnockTimer" to="MovementComponent" method="_on_knock_timer_timeout"]

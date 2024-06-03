@@ -1,5 +1,5 @@
 extends Node2D
-@export var collision_area: CollisionPolygon2D
+@export var collision_area: Node2D
 @export var health_component: Node2D
 @onready var enemy = get_parent()
 signal change_health

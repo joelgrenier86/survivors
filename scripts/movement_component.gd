@@ -31,4 +31,4 @@ func _on_hurtbox_component_knock_back():
 
 
 func _on_knock_timer_timeout():
-	knockback = 1 # Replace with function body.
+	knockback = 1
