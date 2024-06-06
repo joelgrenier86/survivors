@@ -13,11 +13,10 @@ config_version=5
 config/name="Survivors"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2")
-config/icon="res://icon.svg"
 
 [autoload]
 
-Events="*res://events.tscn"
+Events="*res://Global/events.tscn"
 
 [editor_plugins]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://jrrwbm41fe3k"]
 
-[ext_resource type="Script" path="res://scripts/hud.gd" id="1_tmr22"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_atoce"]
 
 [sub_resource type="SystemFont" id="SystemFont_nj116"]
 subpixel_positioning = 0
@@ -9,7 +9,7 @@ subpixel_positioning = 0
 font = SubResource("SystemFont_nj116")
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource("1_tmr22")
+script = ExtResource("1_atoce")
 
 [node name="ScoreLabel" type="Label" parent="."]
 offset_right = 40.0

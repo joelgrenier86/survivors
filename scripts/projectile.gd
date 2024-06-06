@@ -47,13 +47,6 @@ func execute(caster, target, ability_slot):
 	angle = direction
 	velocity = speed * direction
 	
-	var timer = Timer.new()  # Create a new Timer
-	add_child(timer)  # Add the Timer to the current node
-	#timer.wait_time = 1.0  # Set the Timer's wait time to 1 second
-	#timer.one_shot = true  # Set the Timer to stop after finishing
-	#timer.connect("timeout",selfer, "_on_cooldown_timer_timeout")  # Connect the Timer's timeout signal to the function
-	#timer.start()  # Start the Timer
-	#print("cooldown started?")
 
 	
 	

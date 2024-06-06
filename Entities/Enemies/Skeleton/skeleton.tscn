@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://b2la1yge870x2" path="res://assets/lpc_entry/png/walkcycle/BODY_skeleton.png" id="1_dhug1"]
 [ext_resource type="Script" path="res://scripts/skeleton.gd" id="1_gm05k"]
-[ext_resource type="PackedScene" uid="uid://cdoyhriv36rm3" path="res://health_component.tscn" id="3_1oi6s"]
-[ext_resource type="PackedScene" uid="uid://dmlnwioja4n65" path="res://movement_component.tscn" id="4_fj80e"]
-[ext_resource type="PackedScene" uid="uid://b7ja4o26feoot" path="res://enemy_direction_finder_component.tscn" id="5_sdtjf"]
-[ext_resource type="PackedScene" uid="uid://cw5mav0m0jou3" path="res://animator_component.tscn" id="6_55w2b"]
-[ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://hurtbox_component.tscn" id="7_dtlvy"]
+[ext_resource type="PackedScene" uid="uid://cdoyhriv36rm3" path="res://Components/health_component.tscn" id="3_1oi6s"]
+[ext_resource type="PackedScene" uid="uid://dmlnwioja4n65" path="res://Components/movement_component.tscn" id="4_fj80e"]
+[ext_resource type="PackedScene" uid="uid://b7ja4o26feoot" path="res://Components/enemy_direction_finder_component.tscn" id="5_sdtjf"]
+[ext_resource type="PackedScene" uid="uid://cw5mav0m0jou3" path="res://Components/animator_component.tscn" id="6_55w2b"]
+[ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://Components/hurtbox_component.tscn" id="7_dtlvy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wp1ua"]
 atlas = ExtResource("1_dhug1")

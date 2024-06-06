@@ -1,60 +1,59 @@
 [gd_scene load_steps=23 format=3 uid="uid://dwn421e84lwgh"]
 
-[ext_resource type="Texture2D" uid="uid://bniw6epfrnd46" path="res://assets/32x32-bat-sprite.png" id="1_2k4ia"]
-[ext_resource type="Script" path="res://scripts/bat.gd" id="1_ur7ur"]
-[ext_resource type="PackedScene" uid="uid://dmlnwioja4n65" path="res://movement_component.tscn" id="3_v27l8"]
-[ext_resource type="Script" path="res://EnemyCollisionBox.gd" id="3_w4u72"]
-[ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://hurtbox_component.tscn" id="4_arvks"]
-[ext_resource type="PackedScene" uid="uid://cdoyhriv36rm3" path="res://health_component.tscn" id="5_jgns8"]
-[ext_resource type="PackedScene" uid="uid://b7ja4o26feoot" path="res://enemy_direction_finder_component.tscn" id="6_olj7w"]
-[ext_resource type="PackedScene" uid="uid://cw5mav0m0jou3" path="res://animator_component.tscn" id="7_hl84f"]
+[ext_resource type="Script" path="res://scripts/bat.gd" id="1_mrof4"]
+[ext_resource type="Texture2D" uid="uid://bniw6epfrnd46" path="res://assets/32x32-bat-sprite.png" id="2_7pgxy"]
+[ext_resource type="PackedScene" uid="uid://dmlnwioja4n65" path="res://Components/movement_component.tscn" id="4_anqmp"]
+[ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://Components/hurtbox_component.tscn" id="5_qrvo7"]
+[ext_resource type="PackedScene" uid="uid://cdoyhriv36rm3" path="res://Components/health_component.tscn" id="6_xdq20"]
+[ext_resource type="PackedScene" uid="uid://b7ja4o26feoot" path="res://Components/enemy_direction_finder_component.tscn" id="7_afln8"]
+[ext_resource type="PackedScene" uid="uid://cw5mav0m0jou3" path="res://Components/animator_component.tscn" id="8_wdxbn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yarxo"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6mig"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5b7de"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wub2t"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jfgy"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vu5kh"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ekgee"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6upmy"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dld33"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1gyky"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20kef"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_620yp"]
-atlas = ExtResource("1_2k4ia")
+atlas = ExtResource("2_7pgxy")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n84ho"]
@@ -119,10 +118,24 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_uctud"]
 radius = 19.0
 
+[sub_resource type="GDScript" id="GDScript_0mnxr"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [node name="Bat" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_ur7ur")
+script = ExtResource("1_mrof4")
 metadata/_edit_group_ = true
 
 [node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
@@ -133,21 +146,21 @@ frame_progress = 0.424415
 [node name="EnemyCollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_uctud")
-script = ExtResource("3_w4u72")
+script = SubResource("GDScript_0mnxr")
 
-[node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component", "knock_timer") instance=ExtResource("3_v27l8")]
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component", "knock_timer") instance=ExtResource("4_anqmp")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
 knock_timer = NodePath("../KnockTimer")
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("collision_area", "health_component") instance=ExtResource("4_arvks")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("collision_area", "health_component") instance=ExtResource("5_qrvo7")]
 collision_area = NodePath("../EnemyCollisionBox")
 health_component = NodePath("../HealthComponent")
 
-[node name="HealthComponent" parent="." instance=ExtResource("5_jgns8")]
+[node name="HealthComponent" parent="." instance=ExtResource("6_xdq20")]
 
-[node name="EnemyDirectionFinderComponent" parent="." instance=ExtResource("6_olj7w")]
+[node name="EnemyDirectionFinderComponent" parent="." instance=ExtResource("7_afln8")]
 
-[node name="AnimatorComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("7_hl84f")]
+[node name="AnimatorComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("8_wdxbn")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
 
 [node name="KnockTimer" type="Timer" parent="."]

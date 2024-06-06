@@ -10,7 +10,11 @@ var health_regen = 0
 var cooldowns = {}
 
 func load_ability(ability_name):
-	var scene = load("res://" + ability_name + ".tscn")
+	var scene
+	if ability_name == "projectile" or ability_name == "attack":
+		scene = load("res://Abilities/" +ability_name +  ".tscn")
+	else:
+		scene = load("res://Abilities/" + ability_name +"/" +ability_name +  ".tscn")
 	var scene_node = scene.instantiate()
 	add_child(scene_node)
 

@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://df2fds2k1we3" path="res://assets/Pixelarium - Playable Character - Free Version/Pixelarium - Playable Character - Free Version/Pack Content/Side animations/spr_player_right_attack.png" id="11_b8x8h"]
 [ext_resource type="Texture2D" uid="uid://b7rki6m1jpgrm" path="res://assets/Pixelarium - Playable Character - Free Version/Pixelarium - Playable Character - Free Version/Pack Content/Side animations/spr_player_right_idle.png" id="12_rl0ab"]
 [ext_resource type="Texture2D" uid="uid://codp8xvshn2qr" path="res://assets/Pixelarium - Playable Character - Free Version/Pixelarium - Playable Character - Free Version/Pack Content/Side animations/spr_player_right_walk.png" id="13_1pm07"]
-[ext_resource type="PackedScene" uid="uid://e77hw56ynywt" path="res://ability_catalog_component.tscn" id="15_qu3wg"]
+[ext_resource type="PackedScene" uid="uid://e77hw56ynywt" path="res://Components/ability_catalog_component.tscn" id="15_qu3wg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lew5w"]
 radius = 4.2

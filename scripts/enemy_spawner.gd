@@ -4,7 +4,7 @@ extends Node2D
 @export var enemy_scenes : Array[PackedScene] 
 
 @onready var player = get_tree().get_first_node_in_group("player")
-@onready var enemy_scene = preload("res://skeleton.tscn")
+
 signal spawn_monsters(num)
 var spawn_number
 # Called when the node enters the scene tree for the first time.

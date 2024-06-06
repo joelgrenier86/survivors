@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://fs5o7tyn8aif"]
 
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_t4uvr"]
-[ext_resource type="PackedScene" uid="uid://bpf5xm5dh514x" path="res://skeleton.tscn" id="2_dr44r"]
-[ext_resource type="PackedScene" uid="uid://dwn421e84lwgh" path="res://bat.tscn" id="3_2m5uk"]
+[ext_resource type="PackedScene" uid="uid://bpf5xm5dh514x" path="res://Entities/Enemies/Skeleton/skeleton.tscn" id="2_dr44r"]
+[ext_resource type="PackedScene" uid="uid://dwn421e84lwgh" path="res://Entities/Enemies/Bat/bat.tscn" id="3_2m5uk"]
 
 [node name="enemy_spawner" type="Node2D"]
 script = ExtResource("1_t4uvr")

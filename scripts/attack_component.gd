@@ -2,7 +2,7 @@ extends Node2D
 enum Tags  {MELEE, ATTACK, SPELL, PROJECTILE, FIRE,ICE,LIGHTNING,POISON, AREA} 
 @export var speed = 1
 @export var base_damage = 1
-@export var cooldown = $CooldownTimer
+
 
 
 
