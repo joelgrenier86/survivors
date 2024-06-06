@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://dci50jyq4qgvb"]
+[gd_scene load_steps=117 format=3 uid="uid://dci50jyq4qgvb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g02tt"]
 [ext_resource type="Texture2D" uid="uid://cfork88l2b1m1" path="res://assets/Pixelarium - Playable Character - Free Version/Pixelarium - Playable Character - Free Version/Pack Content/Back animations/spr_player_back_attack.png" id="2_gogul"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://df2fds2k1we3" path="res://assets/Pixelarium - Playable Character - Free Version/Pixelarium - Playable Character - Free Version/Pack Content/Side animations/spr_player_right_attack.png" id="11_b8x8h"]
 [ext_resource type="Texture2D" uid="uid://b7rki6m1jpgrm" path="res://assets/Pixelarium - Playable Character - Free Version/Pixelarium - Playable Character - Free Version/Pack Content/Side animations/spr_player_right_idle.png" id="12_rl0ab"]
 [ext_resource type="Texture2D" uid="uid://codp8xvshn2qr" path="res://assets/Pixelarium - Playable Character - Free Version/Pixelarium - Playable Character - Free Version/Pack Content/Side animations/spr_player_right_walk.png" id="13_1pm07"]
-[ext_resource type="PackedScene" uid="uid://e77hw56ynywt" path="res://ability_catalog_component.tscn" id="15_qu3wg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lew5w"]
 radius = 4.2
@@ -814,8 +813,6 @@ collision_mask = 2
 
 [node name="EnemyDetectionBox" type="CollisionShape2D" parent="EnemyDetector"]
 shape = SubResource("CircleShape2D_k31ny")
-
-[node name="AbilityCatalogComponent" parent="." instance=ExtResource("15_qu3wg")]
 
 [connection signal="timeout" from="AttackCD" to="." method="_on_attack_cd_timeout"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]

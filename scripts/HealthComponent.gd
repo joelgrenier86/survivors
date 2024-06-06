@@ -13,8 +13,8 @@ func heal_damage(heal):
 	if current_health > max_health:
 		current_health = max_health
 	
-func _on_hurtbox_component_change_health(hit):
-	var damage = hit.damage
+func _on_hurtbox_component_change_health(damage):
+
 	current_health -= damage
 	if current_health <= 0:
 		is_dead.emit()

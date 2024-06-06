@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://kxuppwb7vdjv"]
+
+[ext_resource type="Script" path="res://scripts/attack_component.gd" id="1_q83ek"]
+
+[node name="AttackComponent" type="Node2D"]
+script = ExtResource("1_q83ek")
+speed = null
+base_damage = null
+cooldown = null
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

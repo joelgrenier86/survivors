@@ -1,21 +1,41 @@
-extends CharacterBody2D
-const sword = preload("res://sword_attack.tscn")
-var attack_cd = 4
-var speed = 200
+extends Entity
+@onready var ability_handler = $AbilityCatalogComponent
+var attack_cd = 4 
+
+
 var direction = Vector2.DOWN
-var aimer
+var aimer = Vector2.ZERO
 var attacking = false
 var health = 100
 var auto_attack = true
 var auto_aim = true
 var nearby = []
+var ability_tracker = {}
 func _ready():
-	pass
-
+	speed = 200
+	Events.cooldown_ready.connect(handle_cooldown)
+	var proj = {"name" :"projectile", "ready": true }
+	ability_tracker[1] = proj
+	# Events.melee_attack_ready.connect(prepare_melee_attack)
+	# Events.projectile_ready.connect(prepare_projectile)
+	# Events.add_ability.connect(add_new_ability)
+	# ability_handler.add_new_ability("sword_attack")
+	
+	#for ability in current_abilities:
+		#if ability.has_method("_on_cooldown_timer_timeout"):
+			#ability._on_cooldown_timer_timeout.connect(use_ability(ability))
 func _physics_process(delta):
 	aimer = get_local_mouse_position()
 	velocity = Vector2.ZERO
-
+	for i in range(1, ability_tracker.size()+1):
+		print(ability_tracker[i]["ready"])
+		if ability_tracker[i]["ready"]:
+			var new_ability = load_ability(ability_tracker[i]["name"])
+			new_ability.execute(self, get_closest_enemy_or_mouse_position(), i)
+			ability_tracker[i]["ready"] = false
+	
+		
+	
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 		direction = Vector2.UP
@@ -42,44 +62,40 @@ func _physics_process(delta):
 			$PlayerAnimation.play("player_left_idle")
 		if direction == Vector2.RIGHT:
 			$PlayerAnimation.play("player_right_idle")
-	if Input.is_action_pressed("attack") && !auto_attack:
-		
-		if !attacking && nearby[0] != null:
-			player_attack()
-			attacking = true
-			$AttackCD.start()
+	#if Input.is_action_pressed("attack"):
+		#var projectile = load_ability("projectile")
+		#projectile.execute(self, get_closest_enemy_or_mouse_position())
+	
 
 	if velocity.length() >0:
 		velocity = velocity.normalized() * speed
 	move_and_slide()
 	
 	
-func player_attack():
 
+	pass
+	#var ability = ability_to_use.instantiate()
+	#if ability.has_method("is_melee"):
+		#if auto_aim && nearby != []:
+			#var aimer2
+			#var closest =  get_closest_enemy_or_null(nearby)
+			#aimer2 = to_local(closest.position)
+			#print("aimer" + str(aimer))
+			#print("aimer2" + str(aimer2))
+			#ability.target = aimer2	
+		#else:
+			#ability.target = aimer
+	#add_child(ability)
 	
-	var sword_attack = sword.instantiate()
-	if auto_aim && nearby != []:
-		##error when the array is empty
+#create a function that takes a skill name as an input, creates the skill instance and executes it AND 
+#starts a cooldown timer for the skills that it retrieves from skill.cooldown
 
-		
-		var aimer2
-		var closest =  get_closest_enemy_or_null(nearby)
-		aimer2 = to_local(closest.position)
-		print("aimer" + str(aimer))
-		print("aimer2" + str(aimer2))
-		sword_attack.target = aimer2
-		
-	else:
-		sword_attack.target = aimer
-	
-		
-	
-	add_child(sword_attack)
-	
 
-func get_closest_enemy_or_null(nearby):
-	var min_dist = 50000
-	var nearest = null
+
+
+func get_closest_enemy_or_mouse_position():
+
+	var nearest = get_local_mouse_position()
 	if nearby.size() >0:
 		nearest = nearby[0]
 		for enemy in nearby:
@@ -95,27 +111,40 @@ func get_closest_enemy_or_null(nearby):
 
 	
 	
-	
+func prepare_melee_attack():
+	var target 
+	if nearby != []:
+		target = to_local(get_closest_enemy_or_mouse_position())
+		print("auto")
+	else:
+		target = aimer
+		print("mouse")
+	$AbilityCatalogComponent.set_melee_target(to_local(target))
 
+func prepare_projectile():
+	var target 
+	if nearby != []:
+		target = to_local(get_closest_enemy_or_mouse_position().position)
+		print("auto")
+	else:
+		target = aimer
+		print("mouse")
+	$AbilityCatalogComponent.set_melee_target(to_local(target))
 
 
 
 func _on_attack_cd_timeout():
-	attacking = false 
-	if auto_attack:
-		player_attack()
+	pass
+	#attacking = false 
+	#if auto_attack:
+		#player_attack()
 func take_damage(amount):
 	health -= amount
 	print(health)
 	if health <= 0:
 		print("you died")
-
-
-
-
-
-
-
+func handle_cooldown(ability_name, ability_index):
+	ability_tracker[ability_index]["ready"] = true
 
 func _on_enemy_detector_body_entered(body):
 	nearby.append(body)

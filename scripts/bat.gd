@@ -19,7 +19,7 @@ func _physics_process(_delta):
 func _on_health_component_is_dead():
 	Events.score_points.emit(point_value)
 	queue_free()
-func handle_hit(damage):
+func take_damage(damage):
 	$HurtboxComponent.handle_hit(damage)
 
 
