@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Entity
 
-var max_health : int = 100
+@export var max_health : int = 100
 var current_health : int = 100
 var speed = 100
 var attack_power = 1
@@ -34,8 +34,20 @@ func regen_health(delta):
 	current_health += health_regen * delta
 	if current_health > max_health:
 		current_health = max_health
-
+func move():
+	move_and_slide()
+func check_collisions():	
+	var collisions = get_slide_collision_count()
+	for i in collisions:
+		var collider = get_slide_collision(i).get_collider()
+		if collider.is_in_group("enemies") && is_in_group("player"):				
+				take_damage(1)
 func take_damage(damage):
-	current_health-= damage
+	
+	$HurtboxComponent.handle_hit(damage)
+
+		
+		
+
 	
 

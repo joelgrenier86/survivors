@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcsbknwa3cuc0"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/enemy.gd" id="1_g7h5b"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_g7h5b")
+point_value = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-1, 0, -1, -1, 1, -1, 1, 1, -1, 1)

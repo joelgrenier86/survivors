@@ -10,23 +10,30 @@ signal deal_damage
 signal cooldown_ready
 var selfer = self
 var ability_index
+var collided = false
 
 
 # Called when the node enters the scene tree for the first time.
 	
 func _physics_process(delta):
 	move_and_slide()
-	check_collisions()
+	if collided==false:		
+		check_collisions()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
 func check_collisions():
 	var collisions = get_slide_collision_count()
+	if collisions != 0:
+		collided = true
 	for i in collisions:
 		var collider = get_slide_collision(i).get_collider()
 		if collider.is_in_group("enemies"):
-			collider.take_damage(1)
+				visible = false
+				position = Vector2(-99, -99)
+				collider.take_damage(1)
+				break
 
 	
 	
@@ -57,6 +64,7 @@ func execute(caster, target, ability_slot):
 func _on_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.handle_hit(self)
+
 	
 func is_projectile():
 	return true
