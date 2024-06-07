@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://e77hw56ynywt"]
 
-[ext_resource type="Script" path="res://scripts/ability_catalog_component.gd" id="1_w0po8"]
-[ext_resource type="PackedScene" uid="uid://vn1vb4nolhij" path="res://Abilities/Sword_Attack/sword_attack.tscn" id="2_gd4u7"]
+[ext_resource type="Script" path="res://Components/ability_catalog_component.gd" id="1_w0po8"]
+[ext_resource type="PackedScene" uid="uid://vn1vb4nolhij" path="res://Abilities/Attack/Sword_Attack/sword_attack.tscn" id="2_gd4u7"]
 
 [node name="AbilityCatalogComponent" type="Node2D"]
 script = ExtResource("1_w0po8")

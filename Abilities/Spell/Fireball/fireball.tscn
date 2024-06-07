@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://kx8bx2ysjxop"]
+
+[node name="Fireball" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

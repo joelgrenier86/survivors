@@ -25,16 +25,40 @@ func _ready():
 		#if ability.has_method("_on_cooldown_timer_timeout"):
 			#ability._on_cooldown_timer_timeout.connect(use_ability(ability))
 func _physics_process(delta):
-	aimer = get_local_mouse_position()
 	velocity = Vector2.ZERO
-	for i in range(1, ability_tracker.size()+1):
-		print(ability_tracker[i]["ready"])
-		if ability_tracker[i]["ready"]:
-			var new_ability = load_ability(ability_tracker[i]["name"])
-			new_ability.execute(self, get_closest_enemy_or_mouse_position(), i)
-			ability_tracker[i]["ready"] = false
+	aimer = get_local_mouse_position()
+	cast_available_spells()
+	handle_input()
+	move_and_slide()
 	
-		
+	#if Input.is_action_pressed("attack"):
+		#var projectile = load_ability("projectile")
+		#projectile.execute(self, get_closest_enemy_or_mouse_position())
+	
+
+
+	
+	
+
+	pass
+	#var ability = ability_to_use.instantiate()
+	#if ability.has_method("is_melee"):
+		#if auto_aim && nearby != []:
+			#var aimer2
+			#var closest =  get_closest_enemy_or_null(nearby)
+			#aimer2 = to_local(closest.position)
+			#print("aimer" + str(aimer))
+			#print("aimer2" + str(aimer2))
+			#ability.target = aimer2	
+		#else:
+			#ability.target = aimer
+	#add_child(ability)
+	
+#create a function that takes a skill name as an input, creates the skill instance and executes it AND 
+#starts a cooldown timer for the skills that it retrieves from skill.cooldown
+
+
+func handle_input():
 	
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
@@ -69,30 +93,7 @@ func _physics_process(delta):
 
 	if velocity.length() >0:
 		velocity = velocity.normalized() * speed
-	move_and_slide()
 	
-	
-
-	pass
-	#var ability = ability_to_use.instantiate()
-	#if ability.has_method("is_melee"):
-		#if auto_aim && nearby != []:
-			#var aimer2
-			#var closest =  get_closest_enemy_or_null(nearby)
-			#aimer2 = to_local(closest.position)
-			#print("aimer" + str(aimer))
-			#print("aimer2" + str(aimer2))
-			#ability.target = aimer2	
-		#else:
-			#ability.target = aimer
-	#add_child(ability)
-	
-#create a function that takes a skill name as an input, creates the skill instance and executes it AND 
-#starts a cooldown timer for the skills that it retrieves from skill.cooldown
-
-
-
-
 func get_closest_enemy_or_mouse_position():
 
 	var nearest = get_local_mouse_position()
@@ -131,7 +132,16 @@ func prepare_projectile():
 		print("mouse")
 	$AbilityCatalogComponent.set_melee_target(to_local(target))
 
-
+func cast_available_spells():
+	for i in range(1, ability_tracker.size()+1):
+		print(ability_tracker[i]["ready"])
+		if ability_tracker[i]["ready"]:
+			var new_ability = load_ability(ability_tracker[i]["name"])
+			new_ability.execute(self, get_closest_enemy_or_mouse_position(), i)
+			ability_tracker[i]["ready"] = false
+	
+		
+	
 
 func _on_attack_cd_timeout():
 	pass
