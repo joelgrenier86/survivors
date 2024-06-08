@@ -9,6 +9,9 @@ var spell_power = 1
 var health_regen = 0
 var cooldowns = {}
 
+
+
+
 func load_ability(ability_name):
 	var scene
 	if ability_name == "projectile" or ability_name == "attack":
@@ -34,7 +37,8 @@ func regen_health(delta):
 	current_health += health_regen * delta
 	if current_health > max_health:
 		current_health = max_health
-func move():
+func move(movement_component):
+	velocity = movement_component.get_velocity(speed) 
 	move_and_slide()
 func check_collisions():	
 	var collisions = get_slide_collision_count()
@@ -46,7 +50,10 @@ func take_damage(damage):
 	
 	$HurtboxComponent.handle_hit(damage)
 
-		
+func animate_entity(animator_component,direction_finder, animation):
+	var animation_name = direction_finder.get_animation_direction()
+	animation.play(animation_name)
+	
 		
 
 	

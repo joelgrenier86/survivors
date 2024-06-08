@@ -4,15 +4,20 @@ var attack_cd = 4
 
 var direction = Vector2.DOWN
 var aimer = Vector2.ZERO
-var attacking = false
+
  
 var auto_attack = true
 var auto_aim = true
 var nearby = []
 var ability_tracker = {}
+@onready var movement_component = $MovementComponent
+@onready var direction_finder = $InputHandlerComponent
+@onready var animator_component = $AnimatorComponent
+@onready var animation = $PlayerAnimation
+
 func _ready():
-	current_health =2
-	speed = 200
+	
+	
 	Events.cooldown_ready.connect(handle_cooldown)
 	var proj = {"name" :"projectile", "ready": true }
 	ability_tracker[1] = proj
@@ -20,8 +25,8 @@ func _ready():
 func _physics_process(delta):
 	
 	cast_available_spells()
-	handle_input()
-	move_and_slide()
+	move(movement_component)
+	animate_entity(animator_component,direction_finder, animation)
 	check_collisions()
 	
 
@@ -67,9 +72,7 @@ func handle_input():
 
 	
 
-	if velocity.length() >0:
-		velocity = velocity.normalized() * speed
-	
+	return velocity
 func get_closest_enemy_or_mouse_position():
 
 	var nearest = get_local_mouse_position()
@@ -106,15 +109,7 @@ func cast_available_spells():
 func handle_cooldown(ability_name, ability_index):
 	ability_tracker[ability_index]["ready"] = true
 
-func _on_enemy_detector_body_entered(body):
-	nearby.append(body)
-	
 
-func _on_enemy_detector_body_exited(body):
-	for i in range(0,nearby.size()):
-		if body == nearby[i]:
-			nearby.remove_at(i)
-			break
 			
 
 

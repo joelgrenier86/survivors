@@ -12,11 +12,15 @@ func _ready():
 func _process(delta):
 	direction = direction_component.call("get_animation_direction")
 	
-func get_enemy_animation():
+
+	return direction
+	
+func get_animation(animation_name):
 	if !direction:
 		direction = direction_component.call("get_animation_direction")
 	match direction:
 		Dirs.LEFT:
+			
 			return "walk_left"
 		Dirs.RIGHT:
 			return "walk_right"
@@ -25,3 +29,4 @@ func get_enemy_animation():
 		Dirs.DOWN:
 			return "walk_down"
 	return direction
+		

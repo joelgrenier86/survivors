@@ -5,6 +5,7 @@
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_g7h5b")
 point_value = null
+max_health = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)

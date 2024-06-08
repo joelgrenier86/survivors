@@ -7,7 +7,7 @@ signal enemy_direction(Vector2)
 func _ready():
 	pass
 func _process(_delta):
-	var direction = acquire_target_position()
+	var direction = get_direction()
 
 	if direction.x < 0:
 		dir = Dirs.LEFT
@@ -18,10 +18,18 @@ func _process(_delta):
 	elif direction.y > 0:
 		dir = Dirs.DOWN
 
-func acquire_target_position():
+func get_direction():
 	if !player:
 		player = get_tree().get_first_node_in_group("player")
 	return get_parent().global_position.direction_to(player.global_position)	
 
 func get_animation_direction():
-	return dir
+	match dir:
+		Dirs.DOWN:
+			return "walk_down"
+		Dirs.UP:
+			return "walk_up"
+		Dirs.LEFT:
+			return "walk_left"
+		Dirs.RIGHT:
+			return "walk_right"
