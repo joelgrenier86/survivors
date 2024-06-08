@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://vn1vb4nolhij"]
 
-[ext_resource type="Script" path="res://scripts/sword_attack.gd" id="1_fhs3j"]
+[ext_resource type="Script" path="res://Abilities/Attack/Sword_Attack/sword_attack.gd" id="1_3csxh"]
 [ext_resource type="Texture2D" uid="uid://cluky8qpl601e" path="res://assets/Snoop's Swords (Pack 6)/Pack 6/1px/06.png" id="2_p1rb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppvjv"]
@@ -20,7 +20,7 @@ animations = [{
 [node name="SwordAttack" type="Area2D" groups=["player_attack"]]
 scale = Vector2(0.5, 0.5)
 collision_mask = 2
-script = ExtResource("1_fhs3j")
+script = ExtResource("1_3csxh")
 metadata/_edit_group_ = true
 
 [node name="SwordHitBox" type="CollisionShape2D" parent="."]

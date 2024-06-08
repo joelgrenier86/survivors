@@ -18,7 +18,7 @@ func load_ability(ability_name):
 	if ability_name == "projectile" or ability_name == "attack":
 		scene = load("res://Abilities/" +ability_name +  ".tscn")
 	else:
-		scene = load("res://Abilities/" + ability_name +"/" +ability_name +  ".tscn")
+		scene = load("res://Abilities/Spell/" + ability_name +"/" +ability_name +  ".tscn")
 	var scene_node = scene.instantiate()
 	add_child(scene_node)
 

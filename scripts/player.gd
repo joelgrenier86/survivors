@@ -19,8 +19,8 @@ func _ready():
 	
 	
 	Events.cooldown_ready.connect(handle_cooldown)
-	var proj = {"name" :"projectile", "ready": true }
-	ability_tracker[1] = proj
+	var fireball = {"name" :"fireball", "ready": true }
+	ability_tracker[1] = fireball
 
 func _physics_process(delta):
 	
@@ -41,38 +41,38 @@ func _physics_process(delta):
 
 
 
-func handle_input():
-	velocity = Vector2.ZERO
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-		direction = Vector2.UP
-		$PlayerAnimation.play("player_back_walk")
-	if Input.is_action_pressed("move_down"):
-		velocity.y +=1
-		$PlayerAnimation.play("player_front_walk")
-		direction = Vector2.DOWN
-	if Input.is_action_pressed("move_left"):
-		velocity.x -=1
-		$PlayerAnimation.play("player_left_walk")
-		direction = Vector2.LEFT
-	if Input.is_action_pressed("move_right"):
-		velocity.x +=1
-		$PlayerAnimation.play("player_right_walk")
-		direction = Vector2.RIGHT
-	if Input.is_action_just_released("move_up") || Input.is_action_just_released("move_down") || Input.is_action_just_released("move_right") || Input.is_action_just_released("move_left"):
-		$PlayerAnimation.stop()
-		if direction == Vector2.DOWN:
-			$PlayerAnimation.play("player_front_idle")
-		if direction == Vector2.UP:
-			$PlayerAnimation.play("player_back_idle")
-		if direction == Vector2.LEFT:
-			$PlayerAnimation.play("player_left_idle")
-		if direction == Vector2.RIGHT:
-			$PlayerAnimation.play("player_right_idle")
-
-	
-
-	return velocity
+#func handle_input():
+	#velocity = Vector2.ZERO
+	#if Input.is_action_pressed("move_up"):
+		#velocity.y -= 1
+		#direction = Vector2.UP
+		#$PlayerAnimation.play("player_back_walk")
+	#if Input.is_action_pressed("move_down"):
+		#velocity.y +=1
+		#$PlayerAnimation.play("player_front_walk")
+		#direction = Vector2.DOWN
+	#if Input.is_action_pressed("move_left"):
+		#velocity.x -=1
+		#$PlayerAnimation.play("player_left_walk")
+		#direction = Vector2.LEFT
+	#if Input.is_action_pressed("move_right"):
+		#velocity.x +=1
+		#$PlayerAnimation.play("player_right_walk")
+		#direction = Vector2.RIGHT
+	#if Input.is_action_just_released("move_up") || Input.is_action_just_released("move_down") || Input.is_action_just_released("move_right") || Input.is_action_just_released("move_left"):
+		#$PlayerAnimation.stop()
+		#if direction == Vector2.DOWN:
+			#$PlayerAnimation.play("player_front_idle")
+		#if direction == Vector2.UP:
+			#$PlayerAnimation.play("player_back_idle")
+		#if direction == Vector2.LEFT:
+			#$PlayerAnimation.play("player_left_idle")
+		#if direction == Vector2.RIGHT:
+			#$PlayerAnimation.play("player_right_idle")
+#
+	#
+#
+	#return velocity
 func get_closest_enemy_or_mouse_position():
 
 	var nearest = get_local_mouse_position()

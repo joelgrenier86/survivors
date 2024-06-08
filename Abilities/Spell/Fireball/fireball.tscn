@@ -1,7 +1,39 @@
-[gd_scene format=3 uid="uid://kx8bx2ysjxop"]
+[gd_scene load_steps=5 format=3 uid="uid://kx8bx2ysjxop"]
+
+[ext_resource type="Script" path="res://Abilities/Spell/Fireball/fireball.gd" id="1_0mk6q"]
+[ext_resource type="Texture2D" uid="uid://b1ms8hjiks331" path="res://Abilities/Spell/Fireball/fireball.png" id="2_w77j4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6u64"]
+atlas = ExtResource("2_w77j4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2kfof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6u64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w77j4")
+}],
+"loop": true,
+"name": &"ability_basic",
+"speed": 5.0
+}]
 
 [node name="Fireball" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_0mk6q")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="SpellAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2kfof")
+animation = &"ability_basic"
+frame_progress = 0.523028
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(10, -10, 10, 9, -15, 9, -15, -10)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

@@ -1,8 +1,8 @@
 extends CharacterBody2D
-
+class_name Projectile
 var ability_name = "projectile"
 var angle = Vector2.ZERO
-var speed = 500
+@export var speed = 500
 @export var damage = 1
 @export var knockback = -2
 @export var cooldown = 2.0
@@ -16,6 +16,7 @@ var collided = false
 # Called when the node enters the scene tree for the first time.
 	
 func _physics_process(delta):
+	print(angle)
 	move_and_slide()
 	if collided==false:		
 		check_collisions()
@@ -38,7 +39,7 @@ func check_collisions():
 	
 	
 func execute(caster, target, ability_slot):
-	ability_index = 1
+	ability_index = ability_slot
 	var root = caster.get_parent()
 	caster.remove_child(self)
 	root.add_child(self)
@@ -51,9 +52,9 @@ func execute(caster, target, ability_slot):
 		direction = get_global_mouse_position() - caster.global_position
 	else:
 		direction = target.global_position - caster.global_position
-	direction = direction.normalized()
-	angle = direction
-	velocity = speed * direction
+	angle = direction.normalized()
+	rotation = angle.angle() 
+	velocity = speed * angle
 	
 
 	
@@ -74,7 +75,7 @@ func is_projectile():
 
 
 
-func _on_cooldown_timer_timeout():
+func send_cooldown_signal():
 	print("cooldown ended")
 	Events.cooldown_ready.emit(ability_name, ability_index)
 	queue_free()
