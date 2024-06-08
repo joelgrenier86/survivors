@@ -1,5 +1,5 @@
 extends Entity
-var attack_cd = 4 
+ 
 
 
 var direction = Vector2.DOWN
@@ -119,3 +119,13 @@ func _on_health_component_is_dead():
 
 func _on_health_component_health_changed(new_health):
 	current_health = new_health
+	
+func _on_enemy_detector_body_entered(body):
+	nearby.append(body)
+	
+
+func _on_enemy_detector_body_exited(body):
+	for i in range(0,nearby.size()):
+		if body == nearby[i]:
+			nearby.remove_at(i)
+			break

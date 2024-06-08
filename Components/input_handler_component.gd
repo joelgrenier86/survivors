@@ -3,6 +3,9 @@ var velocity : Vector2
 var direction : Vector2
 enum Dirs {LEFT,RIGHT,UP,DOWN} 
 var dir
+
+enum State{WALKING, IDLE}
+var state_machine = State.IDLE 
 @export var player_animator : Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,39 +19,37 @@ func get_direction():
 	velocity=Vector2.ZERO
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
-		direction = Vector2.UP
-		player_animator.play("player_back_walk")
+		dir = Dirs.UP
+		state_machine = State.WALKING
 	if Input.is_action_pressed("move_down"):
 		velocity.y +=1
-		player_animator.play("player_front_walk")
-		direction = Vector2.DOWN
+		state_machine = State.WALKING
+		dir = Dirs.DOWN
 	if Input.is_action_pressed("move_left"):
 		velocity.x -=1
-		player_animator.play("player_left_walk")
-		direction = Vector2.LEFT
+		state_machine = State.WALKING
+		dir= Dirs.LEFT
 	if Input.is_action_pressed("move_right"):
 		velocity.x +=1
-		player_animator.play("player_right_walk")
-		direction = Vector2.RIGHT
+		state_machine = State.WALKING
+		dir = Dirs.RIGHT
 	if Input.is_action_just_released("move_up") || Input.is_action_just_released("move_down") || Input.is_action_just_released("move_right") || Input.is_action_just_released("move_left"):
-		player_animator.stop()
-		if direction == Vector2.DOWN:
-			dir = Dirs.DOWN
-		if direction == Vector2.UP:
-			dir = Dirs.UP
-		if direction == Vector2.LEFT:
-			dir = Dirs.LEFT
-		if direction == Vector2.RIGHT:
-			dir = Dirs.RIGHT
+		state_machine = State.IDLE
 	return velocity	
 	
 func get_animation_direction():
+	var animation_name = ""
+	if state_machine == State.WALKING:
+		animation_name += "walk"
+	else:
+		animation_name += "idle"
 	match dir:
 		Dirs.DOWN:
-			return "walk_down"
+			animation_name += "_down"
 		Dirs.UP:
-			return "walk_up"
+			animation_name += "_up"
 		Dirs.LEFT:
-			return "walk_left"
+			animation_name += "_left"
 		Dirs.RIGHT:
-			return "walk_right"
+			animation_name += "_right"
+	return animation_name

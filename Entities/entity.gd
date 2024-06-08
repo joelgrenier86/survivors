@@ -8,6 +8,7 @@ var attack_power = 1
 var spell_power = 1
 var health_regen = 0
 var cooldowns = {}
+var knockback = 1
 
 
 
@@ -38,7 +39,7 @@ func regen_health(delta):
 	if current_health > max_health:
 		current_health = max_health
 func move(movement_component):
-	velocity = movement_component.get_velocity(speed) 
+	velocity = movement_component.get_velocity(speed) * knockback 
 	move_and_slide()
 func check_collisions():	
 	var collisions = get_slide_collision_count()
@@ -49,12 +50,22 @@ func check_collisions():
 func take_damage(damage):
 	
 	$HurtboxComponent.handle_hit(damage)
+	if is_in_group("enemies"):
+		var knock_timer = Timer.new()
+		knock_timer.wait_time = 0.2
+		add_child(knock_timer)
+		knock_timer.connect("timeout", _on_knock_timer_timeout)
+		knock_timer.start()
+		knockback = -2
+		
+		
 
 func animate_entity(animator_component,direction_finder, animation):
 	var animation_name = direction_finder.get_animation_direction()
 	animation.play(animation_name)
 	
 		
-
+func _on_knock_timer_timeout():
+	knockback = 1
 	
 
