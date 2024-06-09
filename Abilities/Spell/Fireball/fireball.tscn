@@ -1,20 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://kx8bx2ysjxop"]
+[gd_scene load_steps=17 format=3 uid="uid://kx8bx2ysjxop"]
 
 [ext_resource type="Script" path="res://Abilities/Spell/Fireball/fireball.gd" id="1_0mk6q"]
 [ext_resource type="Texture2D" uid="uid://b1ms8hjiks331" path="res://Abilities/Spell/Fireball/fireball.png" id="2_w77j4"]
+[ext_resource type="Texture2D" uid="uid://dujhkqoj30ky4" path="res://Abilities/Spell/Fireball/fireball-sheet.png" id="3_705gi"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6u64"]
-atlas = ExtResource("2_w77j4")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ka5q"]
+atlas = ExtResource("3_705gi")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16cle"]
+atlas = ExtResource("3_705gi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_occp8"]
+atlas = ExtResource("3_705gi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm3da"]
+atlas = ExtResource("3_705gi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0u7f"]
+atlas = ExtResource("3_705gi")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8tlf"]
+atlas = ExtResource("3_705gi")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p621i"]
+atlas = ExtResource("3_705gi")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ccve"]
+atlas = ExtResource("3_705gi")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuya8"]
+atlas = ExtResource("3_705gi")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3egqi"]
+atlas = ExtResource("3_705gi")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj2ku"]
+atlas = ExtResource("3_705gi")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23526"]
+atlas = ExtResource("3_705gi")
+region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2kfof"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e6u64")
+"texture": ExtResource("2_w77j4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_w77j4")
+"texture": SubResource("AtlasTexture_3ka5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16cle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_occp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm3da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0u7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8tlf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p621i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ccve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuya8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3egqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj2ku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23526")
 }],
 "loop": true,
 "name": &"ability_basic",
@@ -22,6 +100,7 @@ animations = [{
 }]
 
 [node name="Fireball" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_0mk6q")
 
@@ -29,6 +108,7 @@ script = ExtResource("1_0mk6q")
 sprite_frames = SubResource("SpriteFrames_2kfof")
 animation = &"ability_basic"
 frame_progress = 0.523028
+speed_scale = 3.0
 
 [node name="Hitbox" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(10, -10, 10, 9, -15, 9, -15, -10)

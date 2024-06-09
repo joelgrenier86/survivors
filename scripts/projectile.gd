@@ -55,6 +55,7 @@ func execute(caster, target, ability_slot):
 	angle = direction.normalized()
 	rotation = angle.angle() 
 	velocity = speed * angle
+	$SpellAnimation.play("ability_basic")
 	
 
 	
