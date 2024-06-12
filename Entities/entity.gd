@@ -15,8 +15,8 @@ var knockback = 1
 
 func load_ability(ability_name):
 	var scene
-	if ability_name == "projectile" or ability_name == "attack":
-		scene = load("res://Abilities/" +ability_name +  ".tscn")
+	if ability_name == "sword_attack":
+		scene = load("res://Abilities/Attack/" +ability_name +"/" +ability_name +  ".tscn")
 	else:
 		scene = load("res://Abilities/Spell/" + ability_name +"/" +ability_name +  ".tscn")
 	var scene_node = scene.instantiate()

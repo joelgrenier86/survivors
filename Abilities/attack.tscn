@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d30foh72ml046"]
+
+[ext_resource type="Script" path="res://Abilities/attack.gd" id="1_qrosm"]
+
+[node name="Attack" type="Area2D"]
+script = ExtResource("1_qrosm")
+cooldown = 3.0

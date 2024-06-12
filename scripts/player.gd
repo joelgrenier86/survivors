@@ -20,7 +20,9 @@ func _ready():
 	
 	Events.cooldown_ready.connect(handle_cooldown)
 	var fireball = {"name" :"fireball", "ready": true }
+	var sword_attack = {"name" : "sword_attack", "ready":true}
 	ability_tracker[1] = fireball
+	ability_tracker[2] = sword_attack
 
 func _physics_process(delta):
 	
