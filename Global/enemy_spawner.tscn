@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://fs5o7tyn8aif"]
+[gd_scene load_steps=7 format=3 uid="uid://fs5o7tyn8aif"]
 
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_t4uvr"]
 [ext_resource type="PackedScene" uid="uid://bpf5xm5dh514x" path="res://Entities/Enemies/Skeleton/skeleton.tscn" id="2_dr44r"]
 [ext_resource type="PackedScene" uid="uid://dwn421e84lwgh" path="res://Entities/Enemies/Bat/bat.tscn" id="3_2m5uk"]
+[ext_resource type="PackedScene" uid="uid://dbj3mxiuyfst6" path="res://Entities/Enemies/Beholder/beholder.tscn" id="4_r2fqr"]
+[ext_resource type="PackedScene" uid="uid://dmaslem7xdwe7" path="res://Entities/Enemies/Mushroom/mushroom.tscn" id="5_pr8e1"]
+[ext_resource type="PackedScene" uid="uid://cqei47u7q5x2p" path="res://Entities/Enemies/FireWorm/fire_worm.tscn" id="6_d12sx"]
 
 [node name="enemy_spawner" type="Node2D"]
 script = ExtResource("1_t4uvr")
-enemy_scenes = Array[PackedScene]([ExtResource("2_dr44r"), ExtResource("3_2m5uk")])
+enemy_scenes = Array[PackedScene]([ExtResource("2_dr44r"), ExtResource("3_2m5uk"), ExtResource("4_r2fqr"), ExtResource("5_pr8e1"), ExtResource("6_d12sx")])
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0

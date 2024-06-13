@@ -47,7 +47,8 @@ func get_random_position():
 	var y_coord = randf_range(spawn1.y, spawn2.y)
 	return Vector2(x_coord, y_coord)
 func spawn_monster():
-	var enemy_picker = randi_range(0,enemy_scenes.size()-1)
+	var enemy_picker = 4
+	#var enemy_picker = randi_range(0,enemy_scenes.size()-1)
 	var enemy = enemy_scenes[enemy_picker].instantiate()
 	enemy.global_position = get_random_position()
 	
