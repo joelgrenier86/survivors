@@ -294,7 +294,8 @@ speed = 50
 
 [node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kdh3q")
-animation = &"walk_left"
+animation = &"walk_right"
+frame_progress = 0.254973
 
 [node name="AnimatorComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("1_slkos")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
