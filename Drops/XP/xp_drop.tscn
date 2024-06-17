@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg5nim8veyfd6"]
+
+[ext_resource type="Script" path="res://Drops/XP/xp_drop.gd" id="1_hehd6"]
+
+[node name="XpDrop" type="Area2D"]
+script = ExtResource("1_hehd6")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0.426605, 0.426787, 1)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

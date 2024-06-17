@@ -4,12 +4,14 @@ extends Entity
 
 var direction = Vector2.DOWN
 var aimer = Vector2.ZERO
-
+var level = 1
  
 var auto_attack = true
 var auto_aim = true
 var nearby = []
 var ability_tracker = {}
+var current_xp = 0
+var max_xp = 1
 @onready var movement_component = $MovementComponent
 @onready var direction_finder = $InputHandlerComponent
 @onready var animator_component = $AnimatorComponent
@@ -19,6 +21,7 @@ func _ready():
 	
 	
 	Events.cooldown_ready.connect(handle_cooldown)
+	Events.give_xp.connect(gain_xp)
 	var fireball = {"name" :"fireball", "ready": true }
 	var sword_attack = {"name" : "sword_attack", "ready":true}
 	ability_tracker[1] = fireball
@@ -111,10 +114,18 @@ func cast_available_spells():
 func handle_cooldown(ability_name, ability_index):
 	ability_tracker[ability_index]["ready"] = true
 
+func gain_xp(xp):
+	current_xp += xp
+	if current_xp >= max_xp:
+		level_up()
+		current_xp -= max_xp
+		max_xp = ceil(max_xp * 1.2)
+		level +=1
+		print ("level up!")
 
-			
-
-
+func level_up():
+	#TODO create levelup function
+	pass
 func _on_health_component_is_dead():
 	print("youre dead")
 

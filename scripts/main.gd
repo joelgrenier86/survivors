@@ -6,7 +6,8 @@ var score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Events.score_points.connect(update_score)
+	#TODO send signal to hud to update xp?
+	#Events.give_xp.connect(update_score)
 	place_player()
 
 

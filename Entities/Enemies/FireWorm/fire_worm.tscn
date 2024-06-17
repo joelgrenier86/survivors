@@ -317,3 +317,8 @@ wait_time = 0.1
 
 [node name="EnemyCollisionBox" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-19.3333, -22.3333, 22, -22, 29.6667, 15, -29.3333, 15, -19.3333, -22.6667)
+
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="is_dead" from="HealthComponent" to="." method="_on_health_component_is_dead"]
+[connection signal="change_health" from="HurtboxComponent" to="HealthComponent" method="_on_hurtbox_component_change_health"]
+[connection signal="knock_back" from="HurtboxComponent" to="MovementComponent" method="_on_hurtbox_component_knock_back"]

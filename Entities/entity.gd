@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Entity
 
-@export var max_health : int = 100
-var current_health : int = 100
+@export var max_health : int = 5
+var current_health 
 @export var speed = 100
 var attack_power = 1
 var spell_power = 1

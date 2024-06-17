@@ -1,12 +1,13 @@
 extends Node2D
-@export var max_health = 2
+var max_health 
 var current_health
 signal is_dead
 signal health_changed(current_health)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_health = get_parent().max_health
-
+	max_health = get_parent().max_health
+	current_health = max_health
+	
 
 func heal_damage(heal):
 	current_health += heal

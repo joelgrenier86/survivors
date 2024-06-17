@@ -290,3 +290,8 @@ knock_timer = NodePath("../KnockTimer")
 
 [node name="KnockTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="is_dead" from="HealthComponent" to="." method="_on_health_component_is_dead"]
+[connection signal="change_health" from="HurtboxComponent" to="HealthComponent" method="_on_hurtbox_component_change_health"]
+[connection signal="knock_back" from="HurtboxComponent" to="MovementComponent" method="_on_hurtbox_component_knock_back"]

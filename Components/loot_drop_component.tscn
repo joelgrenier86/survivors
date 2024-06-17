@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d5x5dhk6t0do"]
+
+[ext_resource type="Script" path="res://Components/loot_drop_component.gd" id="1_ptldi"]
+[ext_resource type="PackedScene" uid="uid://cg5nim8veyfd6" path="res://Drops/XP/xp_drop.tscn" id="2_kaotr"]
+
+[node name="LootDropComponent" type="Node2D"]
+script = ExtResource("1_ptldi")
+xp_item = ExtResource("2_kaotr")

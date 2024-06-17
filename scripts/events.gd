@@ -1,5 +1,5 @@
 extends Node
-signal score_points(point_value)
+signal give_xp(xp_value)
 signal deliver_hit(damage)
 signal add_ability(ability)
 signal projectile_ready()

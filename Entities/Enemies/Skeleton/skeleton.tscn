@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bpf5xm5dh514x"]
+[gd_scene load_steps=43 format=3 uid="uid://bpf5xm5dh514x"]
 
 [ext_resource type="Texture2D" uid="uid://b2la1yge870x2" path="res://assets/lpc_entry/png/walkcycle/BODY_skeleton.png" id="1_dhug1"]
 [ext_resource type="Script" path="res://scripts/skeleton.gd" id="1_gm05k"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7ja4o26feoot" path="res://Components/enemy_direction_finder_component.tscn" id="5_sdtjf"]
 [ext_resource type="PackedScene" uid="uid://cw5mav0m0jou3" path="res://Components/animator_component.tscn" id="6_55w2b"]
 [ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://Components/hurtbox_component.tscn" id="7_dtlvy"]
+[ext_resource type="PackedScene" uid="uid://d5x5dhk6t0do" path="res://Components/loot_drop_component.tscn" id="8_ri1er"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wp1ua"]
 atlas = ExtResource("1_dhug1")
@@ -304,6 +305,9 @@ health_component = NodePath("../HealthComponent")
 
 [node name="KnockTimer" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="LootDropComponent" parent="." instance=ExtResource("8_ri1er")]
+position = Vector2(-24.5, -27)
 
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="is_dead" from="HealthComponent" to="." method="_on_health_component_is_dead"]
