@@ -27,5 +27,5 @@ func _physics_process(_delta):
 func roll_drops():
 	$LootDropComponent.drop_loot(xp_value)
 func die():
-	Events.give_xp.emit(xp_value)
+
 	queue_free()

@@ -11,7 +11,7 @@ var auto_aim = true
 var nearby = []
 var ability_tracker = {}
 var current_xp = 0
-var max_xp = 1
+var max_xp = 5
 @onready var movement_component = $MovementComponent
 @onready var direction_finder = $InputHandlerComponent
 @onready var animator_component = $AnimatorComponent
@@ -22,6 +22,7 @@ func _ready():
 	
 	Events.cooldown_ready.connect(handle_cooldown)
 	Events.give_xp.connect(gain_xp)
+	Events.set_max_xp.emit(max_xp,level)
 	var fireball = {"name" :"fireball", "ready": true }
 	var sword_attack = {"name" : "sword_attack", "ready":true}
 	ability_tracker[1] = fireball
@@ -33,51 +34,10 @@ func _physics_process(delta):
 	move(movement_component)
 	animate_entity(animator_component,direction_finder, animation)
 	check_collisions()
-	
 
 
 
-	
-	
 
-	pass
-
-	
-
-
-
-#func handle_input():
-	#velocity = Vector2.ZERO
-	#if Input.is_action_pressed("move_up"):
-		#velocity.y -= 1
-		#direction = Vector2.UP
-		#$PlayerAnimation.play("player_back_walk")
-	#if Input.is_action_pressed("move_down"):
-		#velocity.y +=1
-		#$PlayerAnimation.play("player_front_walk")
-		#direction = Vector2.DOWN
-	#if Input.is_action_pressed("move_left"):
-		#velocity.x -=1
-		#$PlayerAnimation.play("player_left_walk")
-		#direction = Vector2.LEFT
-	#if Input.is_action_pressed("move_right"):
-		#velocity.x +=1
-		#$PlayerAnimation.play("player_right_walk")
-		#direction = Vector2.RIGHT
-	#if Input.is_action_just_released("move_up") || Input.is_action_just_released("move_down") || Input.is_action_just_released("move_right") || Input.is_action_just_released("move_left"):
-		#$PlayerAnimation.stop()
-		#if direction == Vector2.DOWN:
-			#$PlayerAnimation.play("player_front_idle")
-		#if direction == Vector2.UP:
-			#$PlayerAnimation.play("player_back_idle")
-		#if direction == Vector2.LEFT:
-			#$PlayerAnimation.play("player_left_idle")
-		#if direction == Vector2.RIGHT:
-			#$PlayerAnimation.play("player_right_idle")
-#
-	#
-#
-	#return velocity
 func get_closest_enemy_or_mouse_position():
 
 	var nearest = get_local_mouse_position()
@@ -118,14 +78,17 @@ func gain_xp(xp):
 	current_xp += xp
 	if current_xp >= max_xp:
 		level_up()
-		current_xp -= max_xp
-		max_xp = ceil(max_xp * 1.2)
-		level +=1
-		print ("level up!")
+	
+	Events.update_xp_bar.emit(current_xp)
 
 func level_up():
-	#TODO create levelup function
-	pass
+	current_xp -= max_xp
+	max_xp = ceil(max_xp * 1.2)
+	level +=1
+	print ("level " + str(level))
+	Events.set_max_xp.emit(max_xp, level)
+	Events.update_xp_bar.emit(current_xp)
+	
 func _on_health_component_is_dead():
 	print("youre dead")
 
