@@ -4,6 +4,7 @@ var direction_finder
 var movement_component
 var animation_name
 @export var xp_value = 2
+@export var enemy_drop_modifier = 1
 var collision_count
 var collisions = []
 var animator_component
@@ -25,7 +26,7 @@ func _physics_process(_delta):
 	move(movement_component)
 	animate_entity( animator_component, direction_finder, animation)
 func roll_drops():
-	$LootDropComponent.drop_loot(xp_value)
+	$LootDropComponent.drop_loot(xp_value, enemy_drop_modifier)
 func die():
 
 	queue_free()

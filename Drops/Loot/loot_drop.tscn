@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cebi8lg5h8kkq"]
+
+[ext_resource type="Script" path="res://Drops/Loot/loot_drop.gd" id="1_caww6"]
+
+[node name="LootDrop" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_caww6")
+
+[node name="LootSprite" type="Polygon2D" parent="."]
+color = Color(0.65334, 0.118021, 0.28993, 1)
+polygon = PackedVector2Array(-16, 0, -1, -16, 15, 0, 0, 16)
+
+[node name="LootCollisionBox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -19, 18, -1, 0, 19, -20, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

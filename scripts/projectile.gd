@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Projectile
+class_name ProjectileBase
 var ability_name = "projectile"
 var angle = Vector2.ZERO
 @export var speed = 500

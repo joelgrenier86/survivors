@@ -2,6 +2,7 @@ extends Enemy
 
 
 
+
 func _on_health_component_is_dead():
 	roll_drops()
 	die()
