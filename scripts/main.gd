@@ -2,11 +2,13 @@ extends Node
 
 var game_time = 0
 var score = 0
+var is_paused = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#TODO send signal to hud to update xp?
+	
+	Events.toggle_pause.connect(toggle_pause)
 	#Events.give_xp.connect(update_score)
 	place_player()
 
@@ -17,7 +19,9 @@ func _physics_process(delta):
 func place_player():
 	$Player.position = $PlayerStart.position
 
-
+func toggle_pause():
+	is_paused = !is_paused
+	get_tree().paused = is_paused
 func _on_game_timer_timeout():
 	game_time +=1
 	

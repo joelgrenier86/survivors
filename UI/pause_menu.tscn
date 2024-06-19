@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://djvfdsbfqlhi1"]
+
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_0ea2y"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_0ea2y")
+
+[node name="PauseLabel" type="Label" parent="."]
+offset_left = 472.0
+offset_top = 274.0
+offset_right = 694.0
+offset_bottom = 331.0
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -35,6 +35,7 @@ func get_direction():
 		dir = Dirs.RIGHT
 	if Input.is_action_just_released("move_up") || Input.is_action_just_released("move_down") || Input.is_action_just_released("move_right") || Input.is_action_just_released("move_left"):
 		state_machine = State.IDLE
+	
 	return velocity	
 	
 func get_animation_direction():

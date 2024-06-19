@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://chb0b0pwb4ub2"]
+[gd_scene load_steps=10 format=3 uid="uid://chb0b0pwb4ub2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5ynt7"]
 [ext_resource type="PackedScene" uid="uid://dci50jyq4qgvb" path="res://Entities/Player/player.tscn" id="1_n6y4l"]
 [ext_resource type="Texture2D" uid="uid://drs5gpfk2yecd" path="res://assets/mana seed seasonal forest sample (winter)/seasonal sample (winter).png" id="2_qg73s"]
 [ext_resource type="PackedScene" uid="uid://fs5o7tyn8aif" path="res://Global/enemy_spawner.tscn" id="4_sowb2"]
 [ext_resource type="PackedScene" uid="uid://jrrwbm41fe3k" path="res://UI/hud.tscn" id="5_jlbre"]
+[ext_resource type="PackedScene" uid="uid://djvfdsbfqlhi1" path="res://UI/pause_menu.tscn" id="6_ufa1x"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5g150"]
 
@@ -241,6 +242,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_5g150")
 sources/1 = SubResource("TileSetAtlasSource_exyl7")
 
 [node name="main" type="Node"]
+process_mode = 1
 script = ExtResource("1_5ynt7")
 
 [node name="Ground" type="TileMap" parent="."]
@@ -261,6 +263,8 @@ autostart = true
 [node name="Player" parent="." instance=ExtResource("1_n6y4l")]
 position = Vector2(543, 292)
 scale = Vector2(2, 2)
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_ufa1x")]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="spawn_monsters" from="enemy_spawner" to="." method="_on_enemy_spawner_spawn_monsters"]
