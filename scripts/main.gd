@@ -20,6 +20,7 @@ func place_player():
 	$Player.position = $PlayerStart.position
 
 func toggle_pause():
+	
 	is_paused = !is_paused
 	get_tree().paused = is_paused
 func _on_game_timer_timeout():

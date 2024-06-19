@@ -8,9 +8,11 @@ script = ExtResource("1_0ea2y")
 
 [node name="PauseLabel" type="Label" parent="."]
 offset_left = 472.0
-offset_top = 274.0
+offset_top = 222.0
 offset_right = 694.0
-offset_bottom = 331.0
+offset_bottom = 283.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 44
 text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
