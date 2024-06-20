@@ -22,7 +22,7 @@ func _ready():
 	
 	Events.cooldown_ready.connect(handle_cooldown)
 	Events.give_xp.connect(gain_xp)
-	Events.set_max_xp.emit(max_xp,level)
+	Events.set_max_xp.emit(max_xp,current_xp)
 	
 	var sword_attack = {"name" : "sword_attack", "ready":true}
 	
@@ -56,6 +56,7 @@ func get_closest_enemy_or_mouse_position():
 
 	
 func add_ability(ability_name):
+	if ability_tracker.size() < 5:
 		ability_tracker[ability_tracker.size()] = {"name" :"fireball", "ready" : true}
 
 
@@ -87,8 +88,9 @@ func level_up():
 	max_xp = ceil(max_xp * 1.2)
 	level +=1
 	print ("level " + str(level))
-	Events.set_max_xp.emit(max_xp, level)
-	Events.update_xp_bar.emit(current_xp)
+
+	Events.player_level_up.emit(max_xp, current_xp,level)
+
 	
 func _on_health_component_is_dead():
 	print("youre dead")

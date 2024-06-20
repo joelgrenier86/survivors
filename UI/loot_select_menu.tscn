@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bs64dwkwr5q7p"]
+
+[node name="LootSelectMenu" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.062
+anchor_top = 0.099
+anchor_right = 0.937
+anchor_bottom = 0.877
+offset_left = 0.575996
+offset_top = 7.84799
+offset_right = 0.575928
+offset_bottom = 7.70398
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+visibility_layer = 2
+z_index = 1
+custom_minimum_size = Vector2(1024, 512)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.111
+anchor_right = 0.944
+anchor_bottom = 0.873
+offset_left = -56.448
+offset_top = -55.944
+offset_right = 72.4479
+offset_bottom = 56.136
+
+[node name="ColorRect" type="ColorRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0.452271, 0.452932, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.582607, 0.000263564, 0.587139, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.428164, 0.346129, 0.195272, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.008
+anchor_bottom = 1.0
+offset_top = 0.0640001
+offset_right = -0.0640259
+color = Color(0.581033, 0.581033, 0.581033, 1)

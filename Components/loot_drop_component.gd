@@ -3,8 +3,8 @@ extends Node2D
 var xp_value
 
 
-func drop_loot(xp_value, enemy_drop_modifier):
-	
+func drop_loot(enemy_xp_value, enemy_drop_modifier):
+	xp_value = enemy_xp_value
 	roll_xp_drop(enemy_drop_modifier)
 	roll_loot_drop(enemy_drop_modifier)
 	
@@ -16,7 +16,7 @@ func _drop_loot_deferred(xp_drop):
 		
 func roll_xp_drop(enemy_drop_modifier):
 	var random = randi_range(1,74) * enemy_drop_modifier
-	if random > 999:
+	if random > 1:
 		print("xp dropping!")
 		var xp_scene = load("res://Drops/XP/xp_drop.tscn")
 		var xp_drop = xp_scene.instantiate()
@@ -27,7 +27,7 @@ func roll_xp_drop(enemy_drop_modifier):
 		
 func roll_loot_drop(enemy_drop_modifier):
 	var random = randi_range(1,4)
-	if random > 0:
+	if random > 4:
 		print("loot dropping!")
 		var loot_scene = load("res://Drops/Loot/loot_drop.tscn")
 		var loot_drop = loot_scene.instantiate()
