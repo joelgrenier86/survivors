@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5gev0iapct2"]
 
-[ext_resource type="Texture2D" uid="uid://hhg1k8fq1nb1" path="res://UI/loot_card.png" id="1_ckkij"]
+[ext_resource type="Texture2D" uid="uid://hhg1k8fq1nb1" path="res://UI/loot_card/loot_card.png" id="1_ckkij"]
 
 [node name="LootCard" type="Control"]
 layout_mode = 3

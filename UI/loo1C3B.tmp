@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs64dwkwr5q7p"]
+
+[ext_resource type="PackedScene" uid="uid://c5gev0iapct2" path="res://UI/loot_card.tscn" id="1_igdna"]
+[ext_resource type="Script" path="res://UI/loot_select_menu.gd" id="1_resk8"]
+
+[node name="LootSelectMenu" type="CanvasLayer"]
+script = ExtResource("1_resk8")
+
+[node name="LootSelectControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LootPanelContainer" type="HBoxContainer" parent="LootSelectControl"]
+self_modulate = Color(1, 1, 1, 0.341176)
+visibility_layer = 2
+z_index = 1
+custom_minimum_size = Vector2(1024, 512)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.1
+anchor_right = 0.944
+anchor_bottom = 0.9
+offset_left = 50.176
+offset_top = 0.32
+offset_right = -50.1761
+offset_bottom = 0.319946
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AbilityPanel1" type="Panel" parent="LootSelectControl/LootPanelContainer"]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LootCard1" parent="LootSelectControl/LootPanelContainer/AbilityPanel1" instance=ExtResource("1_igdna")]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 39.0
+offset_right = -42.0
+offset_bottom = -87.0
+
+[node name="AbilityPanel2" type="Panel" parent="LootSelectControl/LootPanelContainer"]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LootCard2" parent="LootSelectControl/LootPanelContainer/AbilityPanel2" instance=ExtResource("1_igdna")]
+layout_mode = 1
+offset_left = 34.0
+offset_top = 39.0
+offset_right = -49.0
+offset_bottom = -87.0
+
+[node name="AbilityPanel3" type="Panel" parent="LootSelectControl/LootPanelContainer"]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LootCard3" parent="LootSelectControl/LootPanelContainer/AbilityPanel3" instance=ExtResource("1_igdna")]
+layout_mode = 1
+offset_left = 35.0
+offset_top = 39.0
+offset_right = -48.0
+offset_bottom = -87.0
+
+[node name="ColorRect" type="ColorRect" parent="LootSelectControl"]
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -0.0640869
+color = Color(0.581033, 0.581033, 0.581033, 1)

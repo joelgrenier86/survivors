@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bs64dwkwr5q7p"]
 
-[ext_resource type="PackedScene" uid="uid://c5gev0iapct2" path="res://UI/loot_card.tscn" id="1_igdna"]
-[ext_resource type="Script" path="res://UI/loot_select_menu.gd" id="1_resk8"]
+[ext_resource type="Script" path="res://UI/loot_select_menu/loot_select_menu.gd" id="1_32ehm"]
+[ext_resource type="PackedScene" uid="uid://c5gev0iapct2" path="res://UI/loot_card/loot_card.tscn" id="2_8jmvu"]
 
 [node name="LootSelectMenu" type="CanvasLayer"]
-script = ExtResource("1_resk8")
+script = ExtResource("1_32ehm")
 
 [node name="LootSelectControl" type="Control" parent="."]
 layout_mode = 3
@@ -37,7 +37,7 @@ visibility_layer = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LootCard1" parent="LootSelectControl/LootPanelContainer/AbilityPanel1" instance=ExtResource("1_igdna")]
+[node name="LootCard1" parent="LootSelectControl/LootPanelContainer/AbilityPanel1" instance=ExtResource("2_8jmvu")]
 layout_mode = 1
 offset_left = 40.0
 offset_top = 39.0
@@ -50,7 +50,7 @@ visibility_layer = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LootCard2" parent="LootSelectControl/LootPanelContainer/AbilityPanel2" instance=ExtResource("1_igdna")]
+[node name="LootCard2" parent="LootSelectControl/LootPanelContainer/AbilityPanel2" instance=ExtResource("2_8jmvu")]
 layout_mode = 1
 offset_left = 34.0
 offset_top = 39.0
@@ -63,7 +63,7 @@ visibility_layer = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LootCard3" parent="LootSelectControl/LootPanelContainer/AbilityPanel3" instance=ExtResource("1_igdna")]
+[node name="LootCard3" parent="LootSelectControl/LootPanelContainer/AbilityPanel3" instance=ExtResource("2_8jmvu")]
 layout_mode = 1
 offset_left = 35.0
 offset_top = 39.0
@@ -71,6 +71,7 @@ offset_right = -48.0
 offset_bottom = -87.0
 
 [node name="ColorRect" type="ColorRect" parent="LootSelectControl"]
+self_modulate = Color(1, 1, 1, 0.317647)
 visibility_layer = 4
 layout_mode = 1
 anchors_preset = -1

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var ability_list = []
+@export var ability_list : Array [PackedScene]
 var melee_target = Vector2.ZERO
 var ranged_target = Vector2.ZERO
 var parent = get_parent()

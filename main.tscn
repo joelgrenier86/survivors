@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dci50jyq4qgvb" path="res://Entities/Player/player.tscn" id="1_n6y4l"]
 [ext_resource type="Texture2D" uid="uid://drs5gpfk2yecd" path="res://assets/mana seed seasonal forest sample (winter)/seasonal sample (winter).png" id="2_qg73s"]
 [ext_resource type="PackedScene" uid="uid://fs5o7tyn8aif" path="res://Global/enemy_spawner.tscn" id="4_sowb2"]
-[ext_resource type="PackedScene" uid="uid://jrrwbm41fe3k" path="res://UI/hud.tscn" id="5_jlbre"]
-[ext_resource type="PackedScene" uid="uid://djvfdsbfqlhi1" path="res://UI/pause_menu.tscn" id="6_ufa1x"]
+[ext_resource type="PackedScene" uid="uid://jrrwbm41fe3k" path="res://UI/hud/hud.tscn" id="5_jlbre"]
+[ext_resource type="PackedScene" uid="uid://djvfdsbfqlhi1" path="res://UI/pause_menu/pause_menu.tscn" id="6_ufa1x"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5g150"]
 

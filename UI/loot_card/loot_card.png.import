@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hhg1k8fq1nb1"
-path="res://.godot/imported/loot_card.png-7af2a1dd0fe4bbdab3f5b51d092d79a8.ctex"
+path="res://.godot/imported/loot_card.png-c09bf60e45d568ec1cebfc27b5629710.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/loot_card.png"
-dest_files=["res://.godot/imported/loot_card.png-7af2a1dd0fe4bbdab3f5b51d092d79a8.ctex"]
+source_file="res://UI/loot_card/loot_card.png"
+dest_files=["res://.godot/imported/loot_card.png-c09bf60e45d568ec1cebfc27b5629710.ctex"]
 
 [params]
 

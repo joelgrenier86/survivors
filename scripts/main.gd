@@ -30,7 +30,7 @@ func _on_game_timer_timeout():
 	
 func open_loot_menu(max_xp, current_xp, level):
 	get_tree().paused = true
-	var loot_select_menu = load("res://UI/loot_select_menu.tscn")
+	var loot_select_menu = load("res://UI/loot_select_menu/loot_select_menu.tscn")
 	var loot_select_menu_scene = loot_select_menu.instantiate()
 	add_child(loot_select_menu_scene)
 func update_score(amount):
