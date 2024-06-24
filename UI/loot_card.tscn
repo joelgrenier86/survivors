@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5gev0iapct2"]
+
+[ext_resource type="Texture2D" uid="uid://hhg1k8fq1nb1" path="res://UI/loot_card.png" id="1_ckkij"]
+
+[node name="LootCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -896.0
+offset_bottom = -264.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardBackground" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ckkij")
+
+[node name="TitlePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 232.0
+offset_bottom = 112.0
+
+[node name="CardName" type="RichTextLabel" parent="TitlePanel"]
+custom_minimum_size = Vector2(200, 55)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -27.5
+offset_right = 50.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "[center]Card Name"
+autowrap_mode = 0
+
+[node name="DescriptionPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 200.0
+offset_right = 232.0
+offset_bottom = 360.0
+
+[node name="CardDescription" type="Label" parent="DescriptionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Card Explanation and ddsafas but never dffdsfdsfds only somties
+
+ok"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
