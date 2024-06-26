@@ -9,6 +9,7 @@ var spell_power = 1
 var health_regen = 0
 var cooldowns = {}
 var knockback = 1
+var is_initialized = false
 
 
 
@@ -29,6 +30,8 @@ func start_cooldown(ability, cooldown):
 	cooldowns[ability] = cooldown
 
 func _physics_process(delta):
+	if !is_initialized:
+		return
 	if current_health <= 0:
 		queue_free()    
 	if health_regen > 0:
@@ -39,8 +42,9 @@ func regen_health(delta):
 	if current_health > max_health:
 		current_health = max_health
 func move(movement_component):
-	velocity = movement_component.get_velocity(speed) * knockback 
-	move_and_slide()
+	if movement_component:
+		velocity = movement_component.get_velocity(speed) * knockback 
+		move_and_slide()
 func check_collisions():	
 	var collisions = get_slide_collision_count()
 	for i in collisions:
@@ -61,8 +65,9 @@ func take_damage(damage):
 		
 
 func animate_entity(animator_component,direction_finder, animation):
-	var animation_name = direction_finder.get_animation_direction()
-	animation.play(animation_name)
+	if direction_finder:
+		var animation_name = direction_finder.get_animation_direction()
+		animation.play(animation_name)
 	
 		
 func _on_knock_timer_timeout():

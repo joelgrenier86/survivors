@@ -19,6 +19,14 @@ func _ready():
 	direction_finder = $EnemyDirectionFinderComponent
 	movement_component = $MovementComponent
 	loot_component = $LootDropComponent
+	if animator_component == null:
+		print("AnimatorComponent is null")
+	
+	print("AnimatorComponent: ", animator_component)
+	print("EnemyDirectionFinderComponent: ", direction_finder)
+	print("MovementComponent: ", movement_component)
+	print("LootDropComponent: ", loot_component)
+	is_initialized = true
 func _physics_process(_delta):
 	#every update we want the enemy to find the player and move towards it, get the animation name and play the animation
 	#for simplicity and learning purposes we are using only 4 movement direction animations even though theres diagonal movement

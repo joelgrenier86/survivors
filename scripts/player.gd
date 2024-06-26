@@ -25,8 +25,9 @@ func _ready():
 	Events.set_max_xp.emit(max_xp,current_xp)
 	
 	var sword_attack = {"name" : "sword_attack", "ready":true}
-	
-	ability_tracker[0] = sword_attack
+	var fireball = {"name" : "fireball", "ready":true}
+	#ability_tracker[0] = sword_attack
+	ability_tracker[0] = fireball
 
 func _physics_process(delta):
 	

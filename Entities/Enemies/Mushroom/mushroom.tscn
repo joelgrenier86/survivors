@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dmaslem7xdwe7"]
+[gd_scene load_steps=44 format=3 uid="uid://dmaslem7xdwe7"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Mushroom/mushroom.gd" id="1_ow2fm"]
 [ext_resource type="PackedScene" uid="uid://cw5mav0m0jou3" path="res://Components/animator_component.tscn" id="3_tytia"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xsf1oxypnpyk" path="res://Components/hurtbox_component.tscn" id="6_t8u1m"]
 [ext_resource type="PackedScene" uid="uid://dmlnwioja4n65" path="res://Components/movement_component.tscn" id="7_1qjo5"]
 [ext_resource type="Texture2D" uid="uid://yc20twvh4d2n" path="res://Entities/Enemies/Mushroom/Run_left.png" id="8_b2p6r"]
+[ext_resource type="PackedScene" uid="uid://d5x5dhk6t0do" path="res://Components/loot_drop_component.tscn" id="9_or1lh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twbyf"]
 atlas = ExtResource("6_i8j0t")
@@ -267,6 +268,10 @@ script = ExtResource("1_ow2fm")
 max_health = 4
 speed = 75
 
+[node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4t0ue")
+animation = &"walk_left"
+
 [node name="AnimatorComponent" parent="." node_paths=PackedStringArray("direction_component") instance=ExtResource("3_tytia")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
 
@@ -275,22 +280,20 @@ direction_component = NodePath("../EnemyDirectionFinderComponent")
 [node name="HealthComponent" parent="." instance=ExtResource("5_27e8d")]
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("collision_area", "health_component") instance=ExtResource("6_t8u1m")]
-collision_area = NodePath("../EnemyCollisionBox")
+collision_area = NodePath(".")
 health_component = NodePath("../HealthComponent")
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("direction_component", "knock_timer") instance=ExtResource("7_1qjo5")]
 direction_component = NodePath("../EnemyDirectionFinderComponent")
 knock_timer = NodePath("../KnockTimer")
 
-[node name="EnemyAnimation" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_4t0ue")
-animation = &"walk_left"
-
 [node name="EnemyCollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_slx7b")
 
 [node name="KnockTimer" type="Timer" parent="."]
+
+[node name="LootDropComponent" parent="." instance=ExtResource("9_or1lh")]
 
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="is_dead" from="HealthComponent" to="." method="_on_health_component_is_dead"]

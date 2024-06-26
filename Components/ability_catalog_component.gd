@@ -1,61 +1,35 @@
 extends Node2D
 
 
-@export var ability_list : Array [PackedScene]
-var melee_target = Vector2.ZERO
-var ranged_target = Vector2.ZERO
-var parent = get_parent()
-signal melee_attack_ready
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	## create a new sword_attack instance, add it as a child and use its execute function
-	pass
-	
-	#ability_list.append(sword_attack)
-	#ability_list.append(projectile)
-	##isntantiate all abilities and use their contained execute() function
-	#for ability in ability_list:
-		#var current_ability = ability.new() 
-		#add_child(current_ability)
-		#Events.melee_attack_ready.emit()
-		#current_ability.execute(self, melee_target)
-		
+##@export var ability_list : Array [PackedScene]
+##to avoid the requirement of a full spell catalog im just ramming the spellnames in here
+var ability_list = ["fireball", "lightning bolt","fan of knives", "bladewhirl", "chain lightning", "poison arrow", "jumping flame"]
+var player_upgradeables = ["movement speed", "cooldown reduction", "projectiles", "crit chance", "crit damage", "chance to apply status"]
+var upgrades = [ability_list,player_upgradeables]
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
+
+	
+	
+	
+
+		
+func generate_random_upgrade():
+	var upgrade_type = randi_range(0,1)
+	var list_size = len(upgrades[upgrade_type])
+	var upgrade_index = randi_range(0,list_size-1)
+	return upgrades[upgrade_type][upgrade_index]
+	
+		
 func get_abilities():
 	return ability_list
 
 
-func _on_sword_attack_timer_timeout():
-	# Replace with function body.
-	
-	Events.melee_attack_ready.emit()
 
 	
-func set_melee_target(new_target):
-	melee_target = new_target
-func set_ranged_target(new_target):
-	ranged_target = new_target
+
 	
 
 
-func _on_projectile_timer_timeout():
-	# var ability = projectile.instantiate() 
-	# Events.projectile_ready.emit()
-	# ability.target = ranged_target
-	# add_child(ability)
-	pass
-func add_new_ability(ability_name): 
-	print ("res://" + ability_name + ".tscn")
-	var ability = load("res://" + ability_name + ".tscn")
-	var new_ability = ability.instantiate()
-	var caster = get_parent()
-	melee_attack_ready.emit()
-	new_ability.global_position = caster.global_position
-	
-	var grandparent = caster.get_parent()
-	grandparent.add_child(new_ability)
-	new_ability.execute(caster, melee_target)
-	ability_list.append(new_ability)
+
+
