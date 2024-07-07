@@ -9,6 +9,7 @@ var spell_power = 1
 var health_regen = 0
 var cooldowns = {}
 var knockback = 1
+var stats = []
 var is_initialized = false
 
 

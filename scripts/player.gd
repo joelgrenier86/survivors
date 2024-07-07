@@ -18,8 +18,11 @@ var max_xp = 5
 @onready var animation = $PlayerAnimation
 
 func _ready():
-	
-	
+	stats.append({"name" :"speed", "value" : speed}) 
+	stats.append({"name" :"max_xp","value" : max_xp})
+	stats.append({"name" :"attack_power","value" : attack_power})
+	stats.append({"name" :"spell_power","value" : spell_power})
+	Events.add_ability
 	Events.cooldown_ready.connect(handle_cooldown)
 	Events.give_xp.connect(gain_xp)
 	Events.set_max_xp.emit(max_xp,current_xp)
@@ -55,12 +58,22 @@ func get_closest_enemy_or_mouse_position():
 	return nearest
 	
 
-	
+func apply_upgrade(upgrade):
+	match upgrade[1]:
+		"player_upgrade":
+			upgrade_stat(upgrade)
+		"new_ability":
+			add_ability(upgrade[0])
+		"ability_upgrade":
+			var ability_name = upgrade[0]
 func add_ability(ability_name):
 	if ability_tracker.size() < 5:
 		ability_tracker[ability_tracker.size()] = {"name" :"fireball", "ready" : true}
 
-
+func upgrade_stat(upgrade):
+	for stat in stats:
+		if stat["name"] == upgrade[0]:
+			stat["value"] += 10
 func cast_available_spells():
 	for i in range(0, ability_tracker.size()):
 	

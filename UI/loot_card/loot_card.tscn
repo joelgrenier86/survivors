@@ -62,6 +62,8 @@ offset_left = 24.0
 offset_top = 136.0
 offset_right = -24.0
 offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="CardDescription" type="Label" parent="DescriptionPanel"]
@@ -90,3 +92,5 @@ offset_right = -76.0
 offset_bottom = -23.936
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 text = "SELECT"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
