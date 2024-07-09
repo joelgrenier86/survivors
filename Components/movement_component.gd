@@ -15,8 +15,12 @@ func _ready():
 	else:
 		print("direction_component is not set or does not have get_direction method")
 
-func get_velocity(speed):
-	var velocity = direction_component.get_direction() * speed
+func get_velocity(speed, stat_upgrades):
+	var speed_upgrade = 0
+	for stat in stat_upgrades:
+		if stat.name == "speed":
+			speed_upgrade = stat.value
+	var velocity = direction_component.get_direction() * (speed + speed_upgrade)
 	return velocity
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func prepare_movement():

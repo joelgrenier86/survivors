@@ -3,6 +3,7 @@ extends Node
 var game_time = 0
 var score = 0
 var is_paused = false
+var loot_select_menu_scene : Node
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,6 +11,7 @@ func _ready():
 	
 	Events.toggle_pause.connect(toggle_pause)
 	Events.player_level_up.connect(open_loot_menu)
+	Events.select_upgrade.connect(close_loot_menu)
 	#Events.give_xp.connect(update_score)
 
 	place_player()
@@ -32,9 +34,13 @@ func _on_game_timer_timeout():
 func open_loot_menu(max_xp, current_xp, level):
 	get_tree().paused = true
 	var loot_select_menu = load("res://UI/loot_select_menu/loot_select_menu.tscn")
-	var loot_select_menu_scene = loot_select_menu.instantiate()
+	loot_select_menu_scene = loot_select_menu.instantiate()
 	loot_select_menu_scene.generate_loot_options()
 	add_child(loot_select_menu_scene)
+	
+func close_loot_menu(upgrade):
+	loot_select_menu_scene.close_loot_menu()
+	get_tree().paused = false
 func update_score(amount):
 	score += amount
 	$HUD.update_score_label(score)

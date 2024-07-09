@@ -7,4 +7,4 @@ func configure_card(card_info):
 
 
 func _on_button_pressed():
-	Events.select_upgrade.emit([$TitlePanel/CardName.text, upgrade_type])
+	Events.select_upgrade.emit([$TitlePanel/CardName.text, upgrade_type, 500])

@@ -11,7 +11,7 @@ var cooldowns = {}
 var knockback = 1
 var stats = []
 var is_initialized = false
-
+var stat_upgrades = []
 
 
 
@@ -44,7 +44,7 @@ func regen_health(delta):
 		current_health = max_health
 func move(movement_component):
 	if movement_component:
-		velocity = movement_component.get_velocity(speed) * knockback 
+		velocity = movement_component.get_velocity(speed, stat_upgrades) * knockback 
 		move_and_slide()
 func check_collisions():	
 	var collisions = get_slide_collision_count()

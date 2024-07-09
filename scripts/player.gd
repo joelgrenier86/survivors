@@ -5,7 +5,7 @@ extends Entity
 var direction = Vector2.DOWN
 var aimer = Vector2.ZERO
 var level = 1
- 
+
 var auto_attack = true
 var auto_aim = true
 var nearby = []
@@ -22,7 +22,9 @@ func _ready():
 	stats.append({"name" :"max_xp","value" : max_xp})
 	stats.append({"name" :"attack_power","value" : attack_power})
 	stats.append({"name" :"spell_power","value" : spell_power})
-	Events.add_ability
+	stat_upgrades.append({"name" : "speed", "value" : 0})
+	Events.add_ability.connect(add_ability)
+	Events.select_upgrade.connect(apply_upgrade)
 	Events.cooldown_ready.connect(handle_cooldown)
 	Events.give_xp.connect(gain_xp)
 	Events.set_max_xp.emit(max_xp,current_xp)
@@ -71,9 +73,16 @@ func add_ability(ability_name):
 		ability_tracker[ability_tracker.size()] = {"name" :"fireball", "ready" : true}
 
 func upgrade_stat(upgrade):
-	for stat in stats:
+	#check if the upgrade array has the stat, increment by the amount or append to the end.  
+	#should find a better solution but this has me confused enough.  Possibly stat resource that i
+	#instantiate for each stat, or better data structure that stores every upgrade.  static indexes?
+	var new = true
+	for stat in stat_upgrades:
 		if stat["name"] == upgrade[0]:
-			stat["value"] += 10
+			stat["value"] += upgrade[2]
+			new = false
+		if new:
+			stat_upgrades.append({"name" :upgrade[0],"value" : upgrade[2]})
 func cast_available_spells():
 	for i in range(0, ability_tracker.size()):
 	

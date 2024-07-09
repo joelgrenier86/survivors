@@ -7,5 +7,6 @@ func generate_loot_options():
 		var loot_option = $AbilityCatalogComponent.generate_random_upgrade()
 		loot_panels[i].configure_card(loot_option)
 	
-
+func close_loot_menu():
+	queue_free()
 	

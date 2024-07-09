@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://UI/loot_card/loot_card.gd" id="1_gmc56"]
 
 [node name="LootCard" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,6 +92,7 @@ offset_top = -47.936
 offset_right = -76.0
 offset_bottom = -23.936
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+toggle_mode = true
 text = "SELECT"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

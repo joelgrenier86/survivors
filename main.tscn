@@ -263,6 +263,8 @@ autostart = true
 [node name="Player" parent="." instance=ExtResource("1_n6y4l")]
 position = Vector2(543, 292)
 scale = Vector2(2, 2)
+max_health = 5
+speed = 100
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_ufa1x")]
 
