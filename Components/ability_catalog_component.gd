@@ -21,7 +21,7 @@ func generate_random_upgrade():
 		2: type_name = "ability_upgrade"
 			
 	#return [upgrade, type_name]
-	return [ "speed","player_upgrade"]
+	return ["cooldown_reduction", type_name]
 		
 func get_abilities():
 	return ability_list

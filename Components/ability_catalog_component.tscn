@@ -11,7 +11,6 @@ wait_time = 2.0
 autostart = true
 
 [node name="SwordAttack" parent="." instance=ExtResource("2_gd4u7")]
-cooldown = 3
 
 [node name="ProjectileTimer" type="Timer" parent="."]
 wait_time = 4.0

@@ -8,6 +8,7 @@ extends Attack
 func _ready():
 	ability_name = "sword_attack"
 	attack_node = self
+	
 
 
 

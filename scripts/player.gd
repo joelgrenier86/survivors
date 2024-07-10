@@ -81,14 +81,15 @@ func upgrade_stat(upgrade):
 		if stat["name"] == upgrade[0]:
 			stat["value"] += upgrade[2]
 			new = false
-		if new:
-			stat_upgrades.append({"name" :upgrade[0],"value" : upgrade[2]})
+			break
+	if new:
+		stat_upgrades.append({"name" :upgrade[0],"value" : upgrade[2]})
 func cast_available_spells():
 	for i in range(0, ability_tracker.size()):
 	
 		if ability_tracker[i]["ready"]:
 			var new_ability = load_ability(ability_tracker[i]["name"])
-			new_ability.execute(self, get_closest_enemy_or_mouse_position(), i)
+			new_ability.execute(self, get_closest_enemy_or_mouse_position(), i, stat_upgrades)
 			ability_tracker[i]["ready"] = false
 	
 		

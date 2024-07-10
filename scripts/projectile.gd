@@ -5,14 +5,16 @@ var angle = Vector2.ZERO
 @export var speed = 500
 @export var damage = 1
 @export var knockback = -2
-@export var cooldown = 2.0
+@export var base_cooldown = 2.0
 signal deal_damage
 signal cooldown_ready
 var selfer = self
 var ability_index
 var collided = false
-
-
+var cooldown_reduction = 1.00
+var player_sp = 0
+var player_cdr = 0 
+var player_stats
 # Called when the node enters the scene tree for the first time.
 	
 func _physics_process(delta):
@@ -38,7 +40,13 @@ func check_collisions():
 
 	
 	
-func execute(caster, target, ability_slot):
+func execute(caster, target, ability_slot, player_stats):
+	for stat in player_stats:
+		match stat.name:
+			"spell_power":
+				player_sp = stat.value
+			"cooldown_reduction":
+				player_cdr = stat.value
 	ability_index = ability_slot
 	var root = caster.get_parent()
 	caster.remove_child(self)
@@ -55,8 +63,15 @@ func execute(caster, target, ability_slot):
 	angle = direction.normalized()
 	rotation = angle.angle() 
 	velocity = speed * angle
-	$SpellAnimation.play("ability_basic")
 	
+	$SpellAnimation.play("ability_basic")
+	for stat in player_stats:
+		if stat.name == "cooldown_reduction":
+			cooldown_reduction +=  0.01
+			
+	$CooldownTimer.wait_time = base_cooldown / cooldown_reduction
+	print("cd timer: " + str($CooldownTimer.wait_time))
+	$CooldownTimer.start()
 
 	
 	

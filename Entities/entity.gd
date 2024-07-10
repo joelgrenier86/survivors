@@ -64,7 +64,13 @@ func take_damage(damage):
 		knockback = -2
 		
 		
-
+func get_stat_upgrade_by_name(stat_name):
+	if !stat_upgrades.has(stat_name):
+		return 0
+	for stat in stat_upgrades:
+		if stat.name == stat_name:
+			return stat.value
+	
 func animate_entity(animator_component,direction_finder, animation):
 	if direction_finder:
 		var animation_name = direction_finder.get_animation_direction()
