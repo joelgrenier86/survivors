@@ -31,6 +31,18 @@ text = "Score:
 "
 label_settings = SubResource("LabelSettings_1i7rq")
 
+[node name="SpeedLabel" type="Label" parent="."]
+offset_top = 136.0
+offset_right = 112.0
+offset_bottom = 159.0
+text = "Speed"
+
+[node name="CDRLabel" type="Label" parent="."]
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 119.0
+text = "CDR"
+
 [node name="XpBar" type="TextureProgressBar" parent="."]
 offset_left = 281.0
 offset_top = 567.0

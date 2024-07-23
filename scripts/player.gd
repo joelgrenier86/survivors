@@ -18,11 +18,12 @@ var max_xp = 5
 @onready var animation = $PlayerAnimation
 
 func _ready():
-	stats.append({"name" :"speed", "value" : speed}) 
-	stats.append({"name" :"max_xp","value" : max_xp})
-	stats.append({"name" :"attack_power","value" : attack_power})
-	stats.append({"name" :"spell_power","value" : spell_power})
-	stat_upgrades.append({"name" : "speed", "value" : 0})
+	#stats.append({"name" :"speed", "value" : speed}) 
+	#stats.append({"name" :"max_xp","value" : max_xp})
+	#stats.append({"name" :"attack_power","value" : attack_power})
+	#stats.append({"name" :"spell_power","value" : spell_power})
+	stat_upgrades["speed"] = {"value" : 0}
+	
 	Events.add_ability.connect(add_ability)
 	Events.select_upgrade.connect(apply_upgrade)
 	Events.cooldown_ready.connect(handle_cooldown)
@@ -76,19 +77,19 @@ func upgrade_stat(upgrade):
 	#check if the upgrade array has the stat, increment by the amount or append to the end.  
 	#should find a better solution but this has me confused enough.  Possibly stat resource that i
 	#instantiate for each stat, or better data structure that stores every upgrade.  static indexes?
-	var new = true
-	for stat in stat_upgrades:
-		if stat["name"] == upgrade[0]:
-			stat["value"] += upgrade[2]
-			new = false
-			break
-	if new:
-		stat_upgrades.append({"name" :upgrade[0],"value" : upgrade[2]})
+	var stat_name = upgrade[0]
+	if stat_upgrades.has(stat_name):
+		stat_upgrades[stat_name]["value"] += upgrade[2]
+	else:
+		stat_upgrades[stat_name] = {"value" : upgrade[2]} 
+	Events.update_player_stats.emit(stat_upgrades)
+	
 func cast_available_spells():
 	for i in range(0, ability_tracker.size()):
 	
 		if ability_tracker[i]["ready"]:
 			var new_ability = load_ability(ability_tracker[i]["name"])
+			
 			new_ability.execute(self, get_closest_enemy_or_mouse_position(), i, stat_upgrades)
 			ability_tracker[i]["ready"] = false
 	
@@ -111,7 +112,7 @@ func level_up():
 	current_xp -= max_xp
 	max_xp = ceil(max_xp * 1.2)
 	level +=1
-	print ("level " + str(level))
+	
 
 	Events.player_level_up.emit(max_xp, current_xp,level)
 

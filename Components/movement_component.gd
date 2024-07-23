@@ -17,9 +17,12 @@ func _ready():
 
 func get_velocity(speed, stat_upgrades):
 	var speed_upgrade = 0
-	for stat in stat_upgrades:
-		if stat.name == "speed":
-			speed_upgrade = stat.value
+	if stat_upgrades.has("speed"):
+		speed_upgrade = stat_upgrades.speed.value
+	
+	#for stat in stat_upgrades:
+		#if stat.name == "speed":
+			#speed_upgrade = stat.value
 	var velocity = direction_component.get_direction() * (speed + speed_upgrade)
 	return velocity
 # Called every frame. 'delta' is the elapsed time since the previous frame.

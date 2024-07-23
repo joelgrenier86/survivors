@@ -39,14 +39,16 @@ func check_collisions():
 				break
 
 	
+#func deal_damage(collider):
 	
 func execute(caster, target, ability_slot, player_stats):
-	for stat in player_stats:
-		match stat.name:
-			"spell_power":
-				player_sp = stat.value
-			"cooldown_reduction":
-				player_cdr = stat.value
+	if player_stats.has("spell_power"):
+		player_sp = player_stats.spell_power.value
+	if player_stats.has("cooldown_reduction"):
+		player_cdr = player_stats.cooldown_reduction.value
+		cooldown_reduction +=  0.01
+		
+
 	ability_index = ability_slot
 	var root = caster.get_parent()
 	caster.remove_child(self)
@@ -65,9 +67,9 @@ func execute(caster, target, ability_slot, player_stats):
 	velocity = speed * angle
 	
 	$SpellAnimation.play("ability_basic")
-	for stat in player_stats:
-		if stat.name == "cooldown_reduction":
-			cooldown_reduction +=  0.01
+	#for stat in player_stats:
+		#if stat.name == "cooldown_reduction":
+			#cooldown_reduction +=  0.01
 			
 	$CooldownTimer.wait_time = base_cooldown / cooldown_reduction
 	print("cd timer: " + str($CooldownTimer.wait_time))

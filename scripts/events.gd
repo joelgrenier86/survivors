@@ -10,4 +10,4 @@ signal update_xp_bar(current_xp)
 signal toggle_pause()
 signal player_level_up(max_xp, current_xp, level)
 signal select_upgrade(upgrade_array)
-
+signal update_player_stats(stat_upgrades)
