@@ -16,7 +16,6 @@ func heal_damage(heal):
 		current_health = max_health
 	
 func _on_hurtbox_component_change_health(damage):
-
 	current_health -= damage
 	print (current_health)
 	if current_health <= 0:

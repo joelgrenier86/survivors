@@ -6,6 +6,8 @@ var angle = Vector2.ZERO
 @export var damage = 1
 @export var knockback = -2
 @export var base_cooldown = 2.0
+@export var base_crit_chance = 5.0
+@export var base_crit_damage = 2
 signal deal_damage
 signal cooldown_ready
 var selfer = self
@@ -14,6 +16,8 @@ var collided = false
 var cooldown_reduction = 1.00
 var player_sp = 0
 var player_cdr = 0 
+var player_crit_chance = 0
+var player_crit_damage = 0
 var player_stats
 # Called when the node enters the scene tree for the first time.
 	
@@ -35,20 +39,33 @@ func check_collisions():
 		if collider.is_in_group("enemies"):
 				visible = false
 				position = Vector2(-99, -99)
-				collider.take_damage(1)
+				collider.take_damage(calculate_hit_damage())
 				break
 
 	
 #func deal_damage(collider):
-	
+func calculate_hit_damage():
+	var roll = randf_range(0,1)
+	var chance_to_crit = base_crit_chance / 100
+	#var crit_chance_multi = 1 + (player_crit_chance / 100)
+	chance_to_crit *= (1 + (player_crit_chance / 100))
+	roll += chance_to_crit
+	if roll  >=0:
+		return damage * (base_crit_damage+(player_crit_damage/100))
+	else:
+		return damage
 func execute(caster, target, ability_slot, player_stats):
 	if player_stats.has("spell_power"):
 		player_sp = player_stats.spell_power.value
 	if player_stats.has("cooldown_reduction"):
 		player_cdr = player_stats.cooldown_reduction.value
-		cooldown_reduction +=  0.01
-		
 
+	if player_stats.has("crit_chance"):
+		player_crit_chance = player_stats["crit_chance"]["value"]
+	
+	if player_stats.has("crit_damage"):
+		player_crit_damage = player_stats["crit_damage"]["value"]
+	
 	ability_index = ability_slot
 	var root = caster.get_parent()
 	caster.remove_child(self)

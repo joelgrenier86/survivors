@@ -63,13 +63,7 @@ func take_damage(damage):
 		knock_timer.start()
 		knockback = -2
 		
-#May need in the future, but realized i should just be using dicts and access is easy		
-#func get_stat_upgrade_by_name(stat_name):
-	#if !stat_upgrades.has(stat_name):
-		#return 0
-	#for stat in stat_upgrades:
-		#if stat.name == stat_name:
-			#return stat.value
+
 	
 func animate_entity(animator_component,direction_finder, animation):
 	if direction_finder:
